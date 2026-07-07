@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membaca E-Book - Digital Library FST</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { font-family: 'Courier New', Courier, monospace; background-color: #f7f5ee; }
+        .retro-border { border: 2px solid #000000; }
+        .hard-shadow { box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1); }
+        .retro-btn { background: #3f3f3f; border: 2px solid #000; box-shadow: 4px 4px 0px 0px rgba(0,0,0,1); transition: all 0.2s; color: white; }
+        .retro-btn:active { transform: translate(2px, 2px); box-shadow: none; }
+        /* Scrollbar custom */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #f7f5ee; border-left: 2px solid #000000; }
+        ::-webkit-scrollbar-thumb { background: #bbbbbb; border: 2px solid #000000; border-radius: 4px; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col overflow-hidden">
+
+    <!-- HEADER SPLIT (Persis permintaan screenshot) -->
+    <header class="flex h-20 shrink-0 border-b-2 border-black">
+        <div class="w-64 bg-[#3f3f3f] flex items-center px-4 gap-3 border-r-2 border-black">
+            <img src="Logo FST 1(1).png" alt="Logo" class="w-10 h-10 object-contain">
+            <div class="font-extrabold text-white text-sm tracking-tight">
+                <span class="block">Digital</span>
+                <span class="block">Library</span>
+            </div>
+        </div>
+
+
+        
+        <div class="flex-1 bg-[#d1d5db] flex items-center justify-between px-6">
+            <div>
+                <h2 class="font-black text-lg">Halo, User</h2>
+                <p class="text-[10px] font-bold text-gray-700">Apa yang ingin kamu baca hari ini?</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="relative w-10 h-10 bg-white rounded-full border-2 border-black flex items-center justify-center hover:bg-gray-100 transition shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                    <i class="fa-solid fa-bell text-black text-lg"></i>
+                    <span class="absolute top-1 right-1 w-3 h-3 bg-amber-500 rounded-full border border-black"></span>
+                </button>
+                <div class="w-10 h-10 rounded-full bg-slate-400 border-2 border-black overflow-hidden">
+                    <!-- Tambahkan id="header-avatar" di sini -->
+                            <img id="header-avatar" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=120" alt="Avatar" class="w-full h-full object-cover">
+
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=120" alt="Avatar" class="w-full h-full object-cover">
+                    </div>
+                    <div class="font-bold text-xs">
+                        <span class="block text-black text-sm">User</span>
+                        <span class="block text-gray-600">Mahasiswa</span>
+                    </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex-1 flex overflow-hidden">
+        
+        <!-- SIDEBAR MELAYANG (Persis Screenshot 08.54.27) -->
+        <aside class="w-64 p-6 flex flex-col gap-4 shrink-0 overflow-y-auto">
+            <a href="detail_ebook.html" class="retro-btn p-3 flex items-center gap-4 font-bold text-sm"><i class="fa-solid fa-chevron-left"></i> Kembali</a>
+            <a href="dashboard_user.html" class="retro-btn p-3 flex items-center gap-4 font-bold text-sm"><i class="fa-solid fa-house text-amber-400"></i> Dashboard</a>
+            <a href="koleksi_buku.html" class="retro-btn p-3 flex items-center gap-4 font-bold text-sm"><i class="fa-solid fa-book text-red-400"></i> Buku</a>
+            <a href="koleksi_ebook.html" class="retro-btn p-3 flex items-center gap-4 font-bold text-sm"><i class="fa-solid fa-file-invoice text-amber-300"></i> e-book</a>
+            <a href="riwayat.html" class="retro-btn p-3 flex items-center gap-4 font-bold text-sm"><i class="fa-solid fa-clock-rotate-left text-cyan-400"></i> Riwayat</a>
+            <a href="favorit.html" class="retro-btn p-3 flex items-center gap-4 font-bold text-sm"><i class="fa-solid fa-star text-yellow-400"></i> Favorit</a>
+            <a href="profil.html" class="retro-btn p-3 flex items-center gap-4 font-bold text-sm"><i class="fa-solid fa-user text-orange-400"></i> Profil</a>
+        </aside>
+
+        <!-- MAIN READER AREA -->
+        <main class="flex-1 overflow-y-auto p-12 flex flex-col items-center bg-[#f7f5ee]">
+            <h2 class="text-3xl font-black uppercase mb-2">Komikus Cilik</h2>
+            <p class="font-bold text-lg text-gray-600 mb-8">Arfan Syarif Prabowo</p>
+            <div id="book-viewport" class="bg-white p-8 border-2 border-black mb-20 shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-transform duration-300">
+                <img id="book-image" src="https://images.unsplash.com/photo-1618401471353-b98aedd07871?q=80&w=800" class="max-w-xl w-full">
+            </div>
+        </main>
+    </div>
+
+    <!-- FOOTER KUNING FULL (Tetap di bawah & fungsional) -->
+    <footer class="bg-[#ffff99] border-t-2 border-black grid grid-cols-5 text-center font-bold text-sm h-24 shrink-0">
+        <button onclick="changePage(-1)" class="border-r-2 border-black hover:bg-amber-200 flex flex-col items-center justify-center gap-2"><i class="fa-solid fa-backward text-xl"></i> Sebelumnya</button>
+        <button onclick="zoom(0.1)" class="border-r-2 border-black hover:bg-amber-200 flex flex-col items-center justify-center gap-2"><i class="fa-solid fa-magnifying-glass-plus text-xl"></i> Zoom in</button>
+        <button onclick="downloadEbook()" class="border-r-2 border-black hover:bg-amber-200 flex flex-col items-center justify-center gap-2"><i class="fa-solid fa-download text-xl"></i> Unduh</button>
+        <button onclick="zoom(-0.1)" class="border-r-2 border-black hover:bg-amber-200 flex flex-col items-center justify-center gap-2"><i class="fa-solid fa-magnifying-glass-minus text-xl"></i> Zoom out</button>
+        <button onclick="changePage(1)" class="hover:bg-amber-200 flex flex-col items-center justify-center gap-2"><i class="fa-solid fa-forward text-xl"></i> Selanjutnya</button>
+    </footer>
+
+    <script>
+        let scale = 1;
+        const bookImg = document.getElementById('book-image');
+        
+        function showToast(msg) {
+            const toast = document.createElement('div');
+            // Menghapus class animate-bounce
+            toast.className = "fixed bottom-28 right-6 bg-white p-4 border-2 border-black shadow-[4px_4px_0px_rgba(0,0,0,1)] font-bold text-sm z-50";
+            toast.innerText = msg;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2500);
+        }
+
+        function zoom(val) { 
+            scale = Math.max(0.5, Math.min(2, scale + val)); 
+            bookImg.parentElement.style.transform = `scale(${scale})`; 
+        }
+        
+        function changePage(dir) {
+            showToast(dir === 1 ? "Menuju halaman selanjutnya..." : "Kembali ke halaman sebelumnya...");
+        }
+
+        function downloadEbook() {
+            showToast("File sedang diunduh...");
+            // Durasi diubah jadi 5 detik (5000ms)
+            setTimeout(() => {
+                showToast("File berhasil diunduh!");
+            }, 5000);
+        }
+
+    // Tarik foto dari local storage dan terapkan ke avatar header
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedAvatar = localStorage.getItem('userAvatar');
+        const headerAvatar = document.getElementById('header-avatar');
+        if (savedAvatar && headerAvatar) {
+            headerAvatar.src = savedAvatar;
+        }
+    });
+    </script>
+</body>
+</html>

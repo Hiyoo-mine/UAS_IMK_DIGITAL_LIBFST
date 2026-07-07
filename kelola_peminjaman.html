@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Peminjaman - Digital Library FST</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f7f5ee;
+        }
+        .retro-border { border: 2px solid #000000; }
+        .hard-shadow { box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1); }
+        .sidebar-active {
+            background-color: #555555;
+            border-top: 2px solid #000000;
+            border-bottom: 2px solid #000000;
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden">
+
+    <div class="w-full min-h-screen flex flex-col md:flex-row">
+       <aside class="w-full md:w-64 bg-[#3f3f3f] text-white flex flex-col justify-between border-b-2 md:border-b-0 md:border-r-2 border-black shrink-0 md:h-screen md:sticky md:top-0 z-20">
+            <div>
+                <!-- Brand & Logo Section -->
+                <div class="p-4 flex items-center space-x-3 border-b-2 border-black">
+                    <img src="Logo FST 1(1).png" alt="Logo UIN FST" class="w-12 h-12 object-contain">
+                    <div class="font-extrabold text-sm tracking-tight leading-none">
+                        <span class="block text-white text-base">Digital</span>
+                        <span class="block text-gray-300 text-base mt-1">Library</span>
+                    </div>
+                </div>
+
+                <!-- Menu Navigasi Admin -->
+                <nav class="mt-4 flex flex-col font-bold text-xs sm:text-sm">
+                    <a href="dashboard_admin.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-house"></i>
+                        </span>
+                        <span>Dashboard</span>
+                    </a>
+
+                
+                    <a href="kelola_buku.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-[#ff6b6b] rounded-md flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-book-open"></i>
+                        </span>
+                        <span class="text-white">Kelola Buku</span>
+                    </a>
+
+                    <a href="kelola_peminjaman.html" class="sidebar-active flex items-center space-x-3 px-6 py-4 transition-all">
+                        <span class="w-8 h-8 bg-amber-400 rounded-md flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                        </span>
+                        <span>Kelola Peminjaman</span>
+                    </a>
+
+                    <a href="kelola_pengguna.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-users"></i>
+                        </span>
+                        <span>Kelola Pengguna</span>
+                    </a>
+
+                    <a href="laporan.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-orange-300 rounded-md flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-file-lines"></i>
+                        </span>
+                        <span>Laporan</span>
+                    </a>
+
+                    <a href="profil_admin.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-amber-300 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-user-gear"></i>
+                        </span>
+                        <span>Profil</span>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Log out -->
+            <div class="border-t-2 border-black bg-[#333333]">
+                <a href="login.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-red-900/40 transition-all font-bold text-sm text-red-300">
+                    <span class="w-8 h-8 bg-slate-300 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    </span>
+                    <span>log-out</span>
+                </a>
+            </div>
+        </aside>
+
+        <main class="flex-1 flex flex-col min-w-0 bg-[#f7f5ee]">
+            <header class="bg-[#e5ebed] border-b-2 border-black p-4 px-6 flex items-center justify-between shrink-0">
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-black">Kelola Peminjaman</h2>
+                    <p class="text-[11px] font-bold text-gray-600 mt-1">Daftar permohonan peminjaman buku dari mahasiswa.</p>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="relative w-10 h-10 bg-white rounded-full border-2 border-black flex items-center justify-center hover:bg-gray-100 transition shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                        <i class="fa-solid fa-bell text-black text-lg"></i>
+                        <span class="absolute top-1 right-1 w-3 h-3 bg-amber-500 rounded-full border border-black"></span>
+                    </button>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-slate-400 border-2 border-black overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=120" alt="Avatar" class="w-full h-full object-cover">
+                        </div>
+                        <div class="font-bold text-xs hidden sm:block">
+                            <span class="block text-black text-sm">Username</span>
+                            <span class="block text-gray-600">Admin</span> <!-- Sesuai screenshot, profil kanan tertulis User Mahasiswa, mungkin mockup profil default -->
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="p-6 overflow-y-auto flex-1">
+                <div class="bg-[#fffdf3] retro-border rounded-xl p-6 hard-shadow overflow-x-auto">
+                    <table class="w-full text-left min-w-[900px]">
+                        <thead>
+                            <tr class="text-xs font-black text-gray-500 border-b-2 border-gray-300 uppercase">
+                                <th class="pb-3 pl-2">Nama Pemohon</th>
+                                <th class="pb-3">Judul</th>
+                                <th class="pb-3">Email</th>
+                                <th class="pb-3">Tanggal</th>
+                                <th class="pb-3 text-center">Stok</th>
+                                <th class="pb-3 text-center">Status</th>
+                                <th class="pb-3 text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="loans-tbody" class="text-xs font-bold text-black divide-y divide-gray-300">
+                            <!-- Data dimuat via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="admin-toast" class="fixed bottom-6 right-6 bg-white border-2 border-black p-4 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-50 text-xs font-bold text-black hidden flex items-center space-x-3">
+        <i id="admin-toast-icon" class="fa-solid fa-circle-info text-blue-600"></i>
+        <span id="admin-toast-text"></span>
+    </div>
+
+    <script>
+        let loansDatabase = [
+            { id: 1, name: "Andi Adinata", title: "Algoritma Pemrograman", email: "andi@mhs.uin.ac.id", date: "1 Juni 2026", stock: 4, status: "pending" },
+            { id: 2, name: "Arjuna Arkana", title: "Algoritma & Statistika", email: "arjuna@mhs.uin.ac.id", date: "1 Juni 2026", stock: 12, status: "pending" },
+            { id: 3, name: "Mikazuki Arion", title: "Basis Data", email: "mika@mhs.uin.ac.id", date: "31 Mei 2026", stock: 7, status: "pending" },
+            { id: 4, name: "Siti Latifah", title: "Berbisnis", email: "siti@mhs.uin.ac.id", date: "27 Mei 2026", stock: 20, status: "pending" },
+            { id: 5, name: "Nabila Azzahra", title: "Berbisnis", email: "nabila@mhs.uin.ac.id", date: "27 Mei 2026", stock: 20, status: "pending" },
+            { id: 6, name: "Ammara Aulia", title: "Berbisnis", email: "ammara@mhs.uin.ac.id", date: "27 Mei 2026", stock: 20, status: "pending" }
+        ];
+
+        function renderLoans() {
+            const tbody = document.getElementById('loans-tbody');
+            tbody.innerHTML = '';
+
+            loansDatabase.forEach(loan => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-amber-50/50 transition-colors';
+                tr.innerHTML = `
+                    <td class="py-4 pl-2 font-black">${loan.name}</td>
+                    <td class="py-4">${loan.title}</td>
+                    <td class="py-4">${loan.email}</td>
+                    <td class="py-4">${loan.date}</td>
+                    <td class="py-4 text-center">${loan.stock}</td>
+                    <td class="py-4 text-center">
+                        <span class="px-2 py-1 bg-amber-100 text-amber-800 rounded text-[10px] uppercase border border-black shadow-[1px_1px_0px_rgba(0,0,0,1)]">${loan.status}</span>
+                    </td>
+                    <td class="py-4 text-center">
+                        <div class="flex items-center justify-center space-x-2">
+                            <button onclick="approveLoan(${loan.id})" class="w-6 h-6 border-2 border-black flex items-center justify-center bg-green-200 hover:bg-green-300 active:translate-y-[1px]" title="Setujui">
+                                <i class="fa-solid fa-check text-[10px] text-green-800"></i>
+                            </button>
+                            <button onclick="rejectLoan(${loan.id})" class="w-6 h-6 border-2 border-black flex items-center justify-center bg-red-200 hover:bg-red-300 active:translate-y-[1px]" title="Tolak">
+                                <i class="fa-solid fa-xmark text-[10px] text-red-800"></i>
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function showAdminToast(message, type = 'success') {
+            const toast = document.getElementById('admin-toast');
+            document.getElementById('admin-toast-text').innerText = message;
+            const icon = document.getElementById('admin-toast-icon');
+            icon.className = type === 'success' ? "fa-solid fa-circle-check text-green-600" : "fa-solid fa-circle-xmark text-red-600";
+            
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 2000);
+        }
+
+        function approveLoan(id) {
+            loansDatabase = loansDatabase.filter(l => l.id !== id);
+            renderLoans();
+            showAdminToast("Peminjaman disetujui!", "success");
+        }
+
+        function rejectLoan(id) {
+            loansDatabase = loansDatabase.filter(l => l.id !== id);
+            renderLoans();
+            showAdminToast("Peminjaman ditolak.", "error");
+        }
+
+        window.onload = renderLoans;
+    </script>
+</body>
+</html>

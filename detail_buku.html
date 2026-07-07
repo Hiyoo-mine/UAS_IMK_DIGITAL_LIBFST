@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Buku - Digital Library FST</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Menggunakan font Monospace agar mirip dengan visual di Figma */
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f7f5ee; /* Warna krem dasar aplikasi */
+        }
+        /* Style brutalism stroke hitam tebal */
+        .retro-border {
+            border: 2px solid #000000;
+        }
+        .hard-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+        }
+        /* Kustomisasi scrollbar agar rapi */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f7f5ee;
+            border-left: 2px solid #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #bbbbbb;
+            border: 2px solid #000000;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden">
+
+    <!-- CONTAINER UTAMA - Full Screen -->
+    <div class="w-full min-h-screen flex flex-col md:flex-row">
+        
+        <!-- ================= SIDEBAR KIRI (STICKY DI DESKTOP) ================= -->
+        <aside class="w-full md:w-64 bg-[#3f3f3f] text-white flex flex-col justify-between border-b-2 md:border-b-0 md:border-r-2 border-black shrink-0 md:h-screen md:sticky md:top-0 z-20">
+            <div>
+                <!-- Brand & Logo Section -->
+                <div class="p-4 flex items-center space-x-3 border-b-2 border-black">
+                    <!-- Logo FST UIN Jakarta Bundar -->
+                    <img src="Logo FST 1(1).png" alt="Logo UIN FST" class="w-12 h-12 object-contain">
+                    <div class="font-extrabold text-sm tracking-tight leading-none">
+                        <span class="block text-white text-base">Digital</span>
+                        <span class="block text-gray-300 text-base mt-1">Library</span>
+                    </div>
+                </div>
+
+                <!-- Menu Navigasi -->
+                <nav class="mt-4 flex flex-col font-bold text-sm">
+                    <!-- Dashboard -->
+                    <a href="dashboard_user.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-house"></i>
+                        </span>
+                        <span>Dashboard</span>
+                    </a>
+
+                    <!-- Koleksi Buku (Aktif) -->
+                    <a href="koleksi_buku.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-[#ff6b6b] rounded-md flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-book"></i>
+                        </span>
+                        <span>Koleksi Buku</span>
+                    </a>
+
+                    <!-- Koleksi E-Book -->
+                    <a href="koleksi_ebook.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-amber-400 rounded-md flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-file-invoice"></i>
+                        </span>
+                        <span>Koleksi e-book</span>
+                    </a>
+
+                    <!-- Riwayat -->
+                    <a href="riwayat.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-cyan-400 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                        </span>
+                        <span>Riwayat</span>
+                    </a>
+
+                    <!-- Favorit -->
+                    <a href="favorit.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-star"></i>
+                        </span>
+                        <span>Favorit</span>
+                    </a>
+
+                    <!-- Profil -->
+                    <a href="profil.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-amber-300 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+                        <span>Profil</span>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Log out (Bawah) -->
+            <div class="border-t-2 border-black bg-[#333333]">
+                <a href="login.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-red-900/40 transition-all font-bold text-sm text-red-300">
+                    <span class="w-8 h-8 bg-slate-300 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    </span>
+                    <span>log-out</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- ================= MAIN CONTENT AREA ================= -->
+        <main class="flex-1 flex flex-col min-w-0 bg-[#f7f5ee]">
+            
+            <!-- HEADER BAR (ATAS) -->
+            <header class="bg-[#e5ebed] border-b-2 border-black p-4 px-6 flex items-center justify-between shrink-0">
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-black">Halo, User</h2>
+                    <p class="text-[11px] font-bold text-gray-600 mt-1">Apa yang ingin kamu baca hari ini?</p>
+                </div>
+
+                <!-- Bagian Kanan Header (Notif + Profil) -->
+                <div class="flex items-center space-x-4">
+                    <!-- Bell Notifikasi -->
+                    <button class="relative w-10 h-10 bg-white rounded-full border-2 border-black flex items-center justify-center hover:bg-gray-100 transition shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                        <i class="fa-solid fa-bell text-black text-lg"></i>
+                        <span class="absolute top-1 right-1 w-3 h-3 bg-amber-500 rounded-full border border-black"></span>
+                    </button>
+                    <!-- Profil Info -->
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-slate-400 border-2 border-black overflow-hidden">
+                    <!-- Tambahkan id="header-avatar" di sini -->
+                            <img id="header-avatar" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=120" alt="Avatar" class="w-full h-full object-cover">
+
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=120" alt="Avatar" class="w-full h-full object-cover">
+                    </div>
+                        <div class="font-bold text-xs">
+                            <span class="block text-black text-sm">User</span>
+                            <span class="block text-gray-600">Mahasiswa</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- DETAIL KONTEN AREA (SCROLLABLE & FIXED BUTTONS DI BAWAH) -->
+            <div class="flex-1 flex flex-col justify-between overflow-y-auto relative min-h-0">
+                
+                <!-- KONTEN ATAS -->
+                <div class="p-6 md:p-8 space-y-6">
+                    
+                    <!-- BREADCRUMB NAVIGATION (Koleksi Buku > Detail Buku) -->
+                    <div>
+                        <a href="koleksi_buku.html" class="text-sm font-extrabold text-black underline hover:text-slate-700 tracking-wide">
+                            Koleksi Buku &gt; Detail Buku
+                        </a>
+                    </div>
+
+                    <!-- LAYOUT DUA KOLOM DETAIL (Cover & Metadata) -->
+                    <div class="flex flex-col md:flex-row gap-8 items-start">
+                        
+                        <!-- SISI KIRI: COVER BUKU (GRADASI RETRO BRUTAL) -->
+                        <div class="w-full max-w-[260px] mx-auto md:mx-0 aspect-[3/4] bg-gradient-to-b from-sky-200 to-indigo-300 retro-border rounded-lg relative overflow-hidden shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center p-6 shrink-0">
+                            <span id="book-visual-title" class="text-sm font-black text-slate-800 text-center uppercase tracking-tighter">Memuat Judul...</span>
+                        </div>
+
+                        <!-- SISI KANAN: DETAIL METADATA CARD (BRUTALIST CONTAINER) -->
+                        <div class="flex-1 w-full space-y-4">
+                            <!-- Judul & Pengarang Luar -->
+                            <div class="space-y-1">
+                                <h1 id="book-title" class="text-2xl md:text-3xl font-black text-black tracking-tight uppercase">MEMUAT JUDUL...</h1>
+                                <p id="book-author" class="text-sm font-bold text-gray-700">Oleh: Memuat Penulis...</p>
+                            </div>
+
+                            <!-- Card Box Metadata -->
+                            <div class="bg-[#fffdf3] retro-border rounded-xl p-5 md:p-6 space-y-3 shadow-[2px_2px_0px_rgba(0,0,0,1)] text-xs md:text-sm font-bold text-black leading-relaxed">
+                                <p><span class="inline-block w-28 text-slate-600">Penerbit:</span> <span id="meta-penerbit" class="font-extrabold">UIN Press Jakarta</span></p>
+                                <p><span class="inline-block w-28 text-slate-600">jumlah hal.:</span> <span id="meta-pages" class="font-extrabold">120 halaman</span></p>
+                                <p><span class="inline-block w-28 text-slate-600">Kategori:</span> <span id="meta-kategori" class="font-extrabold">Penelitian, Akademik</span></p>
+                                <p><span class="inline-block w-28 text-slate-600">Bahasa:</span> <span id="meta-bahasa" class="font-extrabold">Indonesia</span></p>
+                                <p><span class="inline-block w-28 text-slate-600">ID buku:</span> <span id="meta-id" class="font-extrabold text-blue-800 font-mono">PB00001</span></p>
+                                <div class="pt-2 border-t border-dashed border-black/20">
+                                    <span class="block text-slate-600 mb-1">Deskripsi:</span>
+                                    <p id="meta-deskripsi" class="text-gray-700 font-normal leading-relaxed text-xs md:text-sm">
+                                        Buku ini mengulas mengenai konsep dasar mata kuliah yang bersangkutan di lingkungan Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta...
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- SEKSI KETERSEDIAAN (PASTEL RETRO BOXES) -->
+                    <div class="space-y-4 pt-2">
+                        <h3 class="text-lg font-black text-black uppercase tracking-tight">Ketersediaan</h3>
+                        <div class="flex flex-col sm:flex-row gap-4 sm:gap-8 font-bold text-xs sm:text-sm text-black">
+                            
+                            <!-- Box Dapat Dipinjam -->
+                            <div class="flex items-center space-x-3">
+                                <span>Dapat dipinjam:</span>
+                                <span id="avail-dapat" class="w-8 h-8 bg-[#d2e7d6] retro-border rounded flex items-center justify-center font-extrabold shadow-[2px_2px_0px_rgba(0,0,0,1)]">
+                                    3
+                                </span>
+                            </div>
+
+                            <!-- Box Sedang Dipinjam -->
+                            <div class="flex items-center space-x-3">
+                                <span>Sedang dipinjam:</span>
+                                <span id="avail-sedang" class="w-8 h-8 bg-[#f2c9c9] retro-border rounded flex items-center justify-center font-extrabold shadow-[2px_2px_0px_rgba(0,0,0,1)]">
+                                    2
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ================== BILAH MENU AKSI BAWAH (3 KOLOM PERSIS FIGMA) ================== -->
+                <div class="w-full bg-[#ffff99] border-t-2 border-black grid grid-cols-3 z-10 sticky bottom-0 text-xs sm:text-sm font-black text-black text-center select-none shrink-0">
+                    <button onclick="shareBook()" class="py-4 sm:py-5 border-r-2 border-black hover:bg-[#ffff77] active:bg-[#e6e600] flex items-center justify-center space-x-2 transition-all">
+                        <i class="fa-solid fa-share-nodes text-lg sm:text-xl"></i>
+                        <span>Bagikan</span>
+                    </button>
+                    <!-- Tombol Favorit Dinamis -->
+                    <button id="btn-fav" onclick="toggleFavorite()" class="py-4 sm:py-5 border-r-2 border-black hover:bg-[#ffff77] active:bg-[#e6e600] flex items-center justify-center space-x-2 transition-all">
+                        <i id="fav-icon" class="fa-solid fa-heart text-red-500 text-lg sm:text-xl"></i>
+                        <span id="fav-text">Favorit</span>
+                    </button>
+                    <button onclick="requestBorrow()" class="py-4 sm:py-5 bg-[#ffcc00] hover:bg-[#e6b800] active:bg-[#cc9900] flex items-center justify-center space-x-2 transition-all">
+                        <i class="fa-solid fa-plus text-lg sm:text-xl"></i>
+                        <span>Pinjam Buku Ini</span>
+                    </button>
+                </div>
+
+            </div>
+        </main>
+
+    </div>
+
+    <!-- FLOATING INTERACTION POPUP (ANTI-ERRORS VISUAL CONFIRMATION TOAST) -->
+    <div id="toast-notif" class="fixed bottom-24 right-6 bg-white border-2 border-black p-4 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-50 text-xs sm:text-sm font-bold text-black hidden flex items-center space-x-3 max-w-sm">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-green-700 text-lg sm:text-xl"></i>
+        <span id="toast-text">Permintaan sukses dikirimkan!</span>
+    </div>
+
+    <!-- ================== FLOATING RETRO MODAL CONFIRMATION (PERSIS FIGMA) ================== -->
+    <div id="confirm-modal" class="fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center z-50 hidden">
+        <div class="bg-[#fffdf3] retro-border rounded-2xl p-6 sm:p-8 max-w-md w-[90%] hard-shadow space-y-6 text-center">
+            <!-- Judul Konfirmasi -->
+            <h3 class="text-base sm:text-lg font-black text-black uppercase tracking-tight">
+                tambahkan ke daftar pinjam?
+            </h3>
+            
+            <!-- Deskripsi Sesuai Figma -->
+            <p class="text-[11px] sm:text-xs font-extrabold text-black leading-relaxed">
+                !admin akan mereset permohonan pinjam anda jika anda tidak mengambil buku di perpustakaan dalam 3hari setelah pengajuan
+            </p>
+            
+            <!-- Baris Tombol Batal & Pinjam -->
+            <div class="flex items-center justify-center space-x-4 pt-2 font-black">
+                <!-- Tombol Batal -->
+                <button onclick="closeBorrowModal()" class="flex-1 py-3 bg-black text-white rounded-lg hover:bg-zinc-800 transition-all text-xs sm:text-sm uppercase tracking-wide">
+                    batal
+                </button>
+                <!-- Tombol Pinjam -->
+                <button onclick="confirmBorrow()" class="flex-1 py-3 bg-[#ffff99] hover:bg-[#ffff77] active:bg-[#e6e600] text-black rounded-lg retro-border hard-shadow transition-all text-xs sm:text-sm uppercase tracking-wide">
+                    pinjam
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT: Logika Dynamic Loading database & UI feedback -->
+    <script>
+        const booksDatabase = [
+            { id: 1, title: "Struktur Data C++", author: "Prof. Harianto", prodi: "Teknik Informatika", kategori: "Penelitian, Pemrograman", bahasa: "Indonesia", tahun: 2024, publisher: "FST UIN Press", pages: "256 halaman", code: "IF-SD024", fromColor: "from-sky-200", toColor: "to-indigo-300", dapat: 5, sedang: 3 },
+            { id: 2, title: "Konsep IMK Modern", author: "Dr. Nurhayati", prodi: "Teknik Informatika", kategori: "Penelitian, Desain Interaksi", bahasa: "Indonesia", tahun: 2023, publisher: "Rineka Cipta", pages: "198 halaman", code: "IF-IMK023", fromColor: "from-sky-200", toColor: "to-indigo-300", dapat: 3, sedang: 1 },
+            { id: 3, title: "Kalkulus Lanjut", author: "Drs. Wahyudi", prodi: "Matematika", kategori: "Penelitian, Sains", bahasa: "Indonesia", tahun: 2019, publisher: "Erlangga", pages: "312 halaman", code: "MA-KL019", fromColor: "from-sky-200", toColor: "to-indigo-300", dapat: 4, sedang: 2 },
+            { id: 4, title: "Kimia Fisika II", author: "Ir. Bambang, M.T.", prodi: "Kimia", kategori: "Penelitian, Murni", bahasa: "Indonesia", tahun: 2022, publisher: "Akademika", pages: "210 halaman", code: "KI-KF022", fromColor: "from-sky-200", toColor: "to-indigo-300", dapat: 2, sedang: 1 },
+            { id: 5, title: "Fisika Quantum", author: "Prof. Sukarman", prodi: "Fisika", kategori: "Penelitian, Teori", bahasa: "Indonesia", tahun: 2023, publisher: "FST UIN Press", pages: "288 halaman", code: "FI-FQ023", fromColor: "from-sky-200", toColor: "to-indigo-300", dapat: 3, sedang: 2 },
+            { id: 6, title: "Sistem Basis Data", author: "Dr. Ir. Ridwan", prodi: "Teknik Informatika", kategori: "Penelitian, Database", bahasa: "Indonesia", tahun: 2020, publisher: "Informatika Bandung", pages: "340 halaman", code: "IF-SBD020", fromColor: "from-sky-200", toColor: "to-indigo-300", dapat: 8, sedang: 4 },
+            { id: 7, title: "Kriptografi Klasik", author: "Drs. Ahmad Jaelani", prodi: "Teknik Informatika", kategori: "Penelitian, Keamanan", bahasa: "Indonesia", tahun: 2018, publisher: "Andi Offset", pages: "175 halaman", code: "IF-KK018", fromColor: "from-sky-200", toColor: "to-indigo-300", dapat: 2, sedang: 0 },
+            { id: 8, title: "Kimia Analitik I", author: "Dr. Siti Aminah", prodi: "Kimia", kategori: "Penelitian, Laborat", bahasa: "Indonesia", tahun: 2017, publisher: "Erlangga", pages: "220 halaman", code: "KI-KA017", fromColor: "from-sky-200", toColor: "to-indigo-300", dapat: 3, sedang: 1 },
+            { id: 9, title: "Pemrograman Python", author: "Yusuf Akbar, M.Kom.", prodi: "Teknik Informatika", kategori: "Penelitian, Pemrograman", bahasa: "Indonesia", tahun: 2025, publisher: "FST UIN Press", pages: "410 halaman", code: "IF-PP025", fromColor: "from-sky-200", toColor: "to-indigo-300", dapat: 10, sedang: 5 },
+            { id: 10, title: "Aljabar Linear", author: "Prof. Hendra Kusuma", prodi: "Matematika", kategori: "Penelitian, Aljabar", bahasa: "Indonesia", tahun: 2016, publisher: "Salemba Teknika", pages: "245 halaman", code: "MA-AL016", fromColor: "from-sky-200", toColor: "to-indigo-300", dapat: 5, sedang: 2 }
+        ];
+
+        function getBookIdFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            return parseInt(params.get('id')) || 1; 
+        }
+
+        function renderBookDetails() {
+            const bookId = getBookIdFromURL();
+            const book = booksDatabase.find(b => b.id === bookId);
+
+            if (book) {
+                document.getElementById('book-visual-title').innerText = book.title;
+                document.getElementById('book-title').innerText = book.title;
+                document.getElementById('book-author').innerText = `Oleh: ${book.author} (${book.tahun})`;
+                const coverBox = document.getElementById('book-visual-title').parentElement;
+                coverBox.className = `w-full max-w-[260px] mx-auto md:mx-0 aspect-[3/4] bg-gradient-to-b ${book.fromColor} ${book.toColor} retro-border rounded-lg relative overflow-hidden shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center p-6 shrink-0`;
+                document.getElementById('meta-penerbit').innerText = book.publisher;
+                document.getElementById('meta-pages').innerText = book.pages;
+                document.getElementById('meta-kategori').innerText = book.kategori;
+                document.getElementById('meta-bahasa').innerText = book.bahasa;
+                document.getElementById('meta-id').innerText = book.code;
+                document.getElementById('meta-deskripsi').innerText = `Buku "${book.title}" ini diterbitkan oleh ${book.publisher} pada tahun ${book.tahun}. Buku ini disusun secara khusus untuk mendukung proses pembelajaran aktif mahasiswa di program studi ${book.prodi} Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta. Buku ini membahas secara komprehensif teori pendukung, metodologi analisis, studi kasus nyata, serta latihan pemahaman untuk mengasah kapabilitas kompetensi akademik pemustaka.`;
+                document.getElementById('avail-dapat').innerText = book.dapat;
+                document.getElementById('avail-sedang').innerText = book.sedang;
+            }
+        }
+
+        function showToast(message, isSuccess = true) {
+            const toast = document.getElementById('toast-notif');
+            const icon = document.getElementById('toast-icon');
+            const text = document.getElementById('toast-text');
+
+            text.innerText = message;
+            if (isSuccess) {
+                icon.className = "fa-solid fa-circle-check text-green-700 text-lg sm:text-xl";
+            } else {
+                icon.className = "fa-solid fa-circle-info text-amber-500 text-lg sm:text-xl";
+            }
+
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3500);
+        }
+
+        function shareBook() {
+            const dummyUrl = window.location.href;
+            const tempInput = document.createElement("input");
+            document.body.appendChild(tempInput);
+            tempInput.value = dummyUrl;
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            showToast("Tautan detail buku berhasil disalin ke clipboard!");
+        }
+
+        function requestBorrow() {
+            const modal = document.getElementById('confirm-modal');
+            modal.classList.remove('hidden');
+        }
+
+        function closeBorrowModal() {
+            const modal = document.getElementById('confirm-modal');
+            modal.classList.add('hidden');
+        }
+
+        function confirmBorrow() {
+            const bookId = getBookIdFromURL();
+            const book = booksDatabase.find(b => b.id === bookId);
+            let history = JSON.parse(localStorage.getItem('userHistory')) || {
+                borrowing: [], returned: [], ebooksDibaca: [], ebooksSelesai: []
+            };
+
+            if (!history.borrowing.find(b => b.id === book.id)) {
+                history.borrowing.push({
+                    id: book.id, 
+                    title: book.title, 
+                    color: "from-sky-200 to-indigo-300" 
+                });
+                localStorage.setItem('userHistory', JSON.stringify(history));
+            }
+
+            closeBorrowModal();
+            showToast("Permintaan booking pinjam berhasil dikirim ke Pustakawan!", true);
+        }
+
+        // --- TAMBAHAN LOGIKA FAVORIT ---
+        function updateFavUI() {
+            const bookId = getBookIdFromURL();
+            const favs = JSON.parse(localStorage.getItem('userFavorites')) || [];
+            const isFav = favs.find(f => f.id === bookId && f.type === 'buku');
+            const btnText = document.getElementById('fav-text');
+            btnText.innerText = isFav ? "Hapus Favorit" : "Favorit";
+        }
+
+        function toggleFavorite() {
+            const bookId = getBookIdFromURL();
+            const book = booksDatabase.find(b => b.id === bookId);
+            let favs = JSON.parse(localStorage.getItem('userFavorites')) || [];
+            
+            const index = favs.findIndex(f => f.id === bookId && f.type === 'buku');
+            if (index > -1) {
+                favs.splice(index, 1);
+                showToast("Dihapus dari Favorit!");
+            } else {
+                favs.push({ 
+                    id: book.id, 
+                    title: book.title, 
+                    type: 'buku', 
+                    color: book.fromColor + " " + book.toColor,
+                    link: "detail_buku.html?id=" + book.id 
+                });
+                showToast("Ditambahkan ke Favorit!");
+            }
+            localStorage.setItem('userFavorites', JSON.stringify(favs));
+            updateFavUI();
+        }
+
+        window.onload = function() {
+            renderBookDetails();
+            updateFavUI();
+        }
+
+    // Tarik foto dari local storage dan terapkan ke avatar header
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedAvatar = localStorage.getItem('userAvatar');
+        const headerAvatar = document.getElementById('header-avatar');
+        if (savedAvatar && headerAvatar) {
+            headerAvatar.src = savedAvatar;
+        }
+    });
+
+    </script>
+</body>
+</html>

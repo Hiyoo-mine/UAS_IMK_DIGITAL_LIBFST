@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koleksi Buku - Digital Library FST</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Menggunakan font Monospace agar mirip dengan visual asli di Figma */
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f7f5ee; /* Warna krem dasar aplikasi */
+        }
+        /* Style brutalism stroke hitam tebal */
+        .retro-border {
+            border: 2px solid #000000;
+        }
+        .hard-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+        }
+        .sidebar-active {
+            background-color: #555555;
+            border-top: 2px solid #000000;
+            border-bottom: 2px solid #000000;
+        }
+        /* Kustomisasi scrollbar agar rapi */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f7f5ee;
+            border-left: 2px solid #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #bbbbbb;
+            border: 2px solid #000000;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden">
+
+    <!-- CONTAINER UTAMA - Full Screen Tanpa Ruang Abu-Abu Gelap di Sekelilingnya -->
+    <div class="w-full min-h-screen flex flex-col md:flex-row">
+        
+        <!-- ================= SIDEBAR KIRI (STICKY DI DESKTOP) ================= -->
+        <aside class="w-full md:w-64 bg-[#3f3f3f] text-white flex flex-col justify-between border-b-2 md:border-b-0 md:border-r-2 border-black shrink-0 md:h-screen md:sticky md:top-0">
+            <div>
+                <!-- Brand & Logo Section -->
+                <div class="p-4 flex items-center space-x-3 border-b-2 border-black">
+                    <!-- Logo FST UIN Jakarta Bundar -->
+                    <img src="Logo FST 1(1).png" alt="Logo UIN FST" class="w-12 h-12 object-contain">
+                    <div class="font-extrabold text-sm tracking-tight leading-none">
+                        <span class="block text-white text-base">Digital</span>
+                        <span class="block text-gray-300 text-base mt-1">Library</span>
+                    </div>
+                </div>
+
+                <!-- Menu Navigasi -->
+                <nav class="mt-4 flex flex-col font-bold text-sm">
+                    <!-- Dashboard -->
+                    <a href="dashboard_user.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-house"></i>
+                        </span>
+                        <span>Dashboard</span>
+                    </a>
+
+                    <!-- Koleksi Buku (Aktif) -->
+                    <a href="koleksi_buku.html" class="sidebar-active flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-[#ff6b6b] rounded-md flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-book"></i>
+                        </span>
+                        <span>Koleksi Buku</span>
+                    </a>
+
+                    <!-- Koleksi E-Book -->
+                    <a href="koleksi_ebook.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-amber-400 rounded-md flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-file-invoice"></i>
+                        </span>
+                        <span>Koleksi e-book</span>
+                    </a>
+
+                    <!-- Riwayat -->
+                    <a href="riwayat.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-cyan-400 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                        </span>
+                        <span>Riwayat</span>
+                    </a>
+
+                    <!-- Favorit -->
+                    <a href="favorit.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-star"></i>
+                        </span>
+                        <span>Favorit</span>
+                    </a>
+
+                    <!-- Profil -->
+                    <a href="profil.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-amber-300 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+                        <span>Profil</span>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Log out (Bawah) -->
+            <div class="border-t-2 border-black bg-[#333333]">
+                <a href="login.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-red-900/40 transition-all font-bold text-sm text-red-300">
+                    <span class="w-8 h-8 bg-slate-300 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    </span>
+                    <span>log-out</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- ================= MAIN CONTENT AREA ================= -->
+        <main class="flex-1 flex flex-col min-w-0 bg-[#f7f5ee]">
+            
+            <!-- HEADER BAR (ATAS) -->
+            <header class="bg-[#e5ebed] border-b-2 border-black p-4 px-6 flex items-center justify-between shrink-0">
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-black">Halo, User</h2>
+                    <p class="text-[11px] font-bold text-gray-600 mt-1">Apa yang ingin kamu baca hari ini?</p>
+                </div>
+
+                <!-- Bagian Kanan Header (Notif + Profil) -->
+                <div class="flex items-center space-x-4">
+                    <!-- Bell Notifikasi -->
+                    <button class="relative w-10 h-10 bg-white rounded-full border-2 border-black flex items-center justify-center hover:bg-gray-100 transition shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                        <i class="fa-solid fa-bell text-black text-lg"></i>
+                        <span class="absolute top-1 right-1 w-3 h-3 bg-amber-500 rounded-full border border-black"></span>
+                    </button>
+                    <!-- Profil Info -->
+                    <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full bg-slate-400 border-2 border-black overflow-hidden">
+                    <!-- Tambahkan id="header-avatar" di sini -->
+                            <img id="header-avatar" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=120" alt="Avatar" class="w-full h-full object-cover">
+
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=120" alt="Avatar" class="w-full h-full object-cover">
+                    </div>
+                        <div class="font-bold text-xs">
+                            <span class="block text-black text-sm">User</span>
+                            <span class="block text-gray-600">Mahasiswa</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- KONTEN GRIDS DENGAN OPSI SCROLL VERTIKAL YANG MULUS -->
+            <div class="p-6 space-y-6 overflow-y-auto flex-1 relative">
+                
+                <!-- Judul Bagian -->
+                <div class="space-y-1">
+                    <h2 class="text-xl font-extrabold text-black">Semua Buku</h2>
+                    <p class="text-xs font-bold text-gray-600">Tingkatkan literasimu hari ini dengan membaca beberapa buku...</p>
+                </div>
+
+                <!-- PENCARIAN & FITUR NAVIGASI (CARI, FILTER, URUTKAN) -->
+                <div class="flex flex-col md:flex-row gap-4 items-stretch md:items-center relative z-20">
+                    <!-- Input Cari Buku -->
+                    <div class="flex-1 flex border-2 border-black rounded-lg overflow-hidden bg-white">
+                        <input type="text" id="search-input" placeholder="cari judul buku / penulis..." class="w-full p-2.5 px-4 text-xs font-bold text-gray-700 outline-none bg-transparent">
+                        <button id="search-btn" class="bg-[#bbbbbb] px-5 border-l-2 border-black flex items-center justify-center hover:bg-gray-400 transition-all">
+                            <i class="fa-solid fa-magnifying-glass text-black"></i>
+                        </button>
+                    </div>
+
+                    <!-- Tombol Aksi Kanan -->
+                    <div class="flex gap-3">
+                        <!-- Button Filter -->
+                        <button onclick="toggleFilter()" class="p-2.5 px-6 bg-[#ffff99] border-2 border-black rounded-lg text-xs font-extrabold text-black flex items-center space-x-2 shadow-[2px_2px_0px_rgba(0,0,0,1)] active:translate-y-[1.5px] active:shadow-[1px_1px_0px_rgba(0,0,0,1)] transition-all">
+                            <i class="fa-solid fa-filter"></i>
+                            <span>Filter</span>
+                        </button>
+
+                        <!-- Button Urutkan -->
+                        <button onclick="toggleSort()" class="p-2.5 px-6 bg-[#ffff99] border-2 border-black rounded-lg text-xs font-extrabold text-black flex items-center space-x-2 shadow-[2px_2px_0px_rgba(0,0,0,1)] active:translate-y-[1.5px] active:shadow-[1px_1px_0px_rgba(0,0,0,1)] transition-all">
+                            <i class="fa-solid fa-arrow-down-wide-short"></i>
+                            <span>Urutkan</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- FLOATING ELEMENT 1: MENU DROPDOWN URUTKAN (PERSIS FIGMA) -->
+                <div id="sort-dropdown" class="absolute right-6 top-36 w-60 bg-white border-2 border-black rounded-lg shadow-[4px_4px_0px_rgba(0,0,0,1)] z-30 hidden">
+                    <ul class="text-xs font-extrabold text-black divide-y-2 divide-black">
+                        <!-- Pilihan 1 (Aktif) -->
+                        <li class="p-3 bg-[#cccccc] cursor-pointer hover:bg-gray-200" onclick="selectSort('Terbaru - Terlama')">Terbaru - Terlama</li>
+                        <li class="p-3 cursor-pointer hover:bg-gray-100" onclick="selectSort('Terlama - Terbaru')">Terlama - Terbaru</li>
+                        <li class="p-3 cursor-pointer hover:bg-gray-100" onclick="selectSort('Terpopuler')">Terpopuler</li>
+                        <li class="p-3 cursor-pointer hover:bg-gray-100" onclick="selectSort('A - Z')">A - Z</li>
+                        <li class="p-3 cursor-pointer hover:bg-gray-100" onclick="selectSort('Z - A')">Z - A</li>
+                    </ul>
+                </div>
+
+                <!-- FLOATING ELEMENT 2: MODAL POPUP FILTER (DENGAN DATA VALUE) -->
+                <div id="filter-modal" class="absolute left-1/2 -translate-x-1/2 top-40 w-full max-w-xl bg-white border-2 border-black rounded-lg shadow-[6px_6px_0px_rgba(0,0,0,1)] p-6 z-30 hidden">
+                    <div class="grid grid-cols-2 gap-6 text-[11px] font-bold text-black">
+                        
+                        <!-- Kolom Kiri: Prodi & Bahasa -->
+                        <div class="space-y-4">
+                            <!-- Prodi -->
+                            <div class="space-y-2">
+                                <h4 class="text-xs font-extrabold border-b border-black pb-1">Prodi</h4>
+                                <div class="space-y-1.5 max-h-36 overflow-y-auto pr-1">
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="prodi" value="" class="accent-black" checked> <span class="text-blue-700 font-extrabold">Semua Prodi</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="prodi" value="Matematika" class="accent-black"> <span>Matematika</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="prodi" value="Fisika" class="accent-black"> <span>Fisika</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="prodi" value="Kimia" class="accent-black"> <span>Kimia</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="prodi" value="Biologi" class="accent-black"> <span>Biologi</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="prodi" value="Teknik Informatika" class="accent-black"> <span>Teknik Informatika</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="prodi" value="Sistem Informasi" class="accent-black"> <span>Sistem Informasi</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="prodi" value="Agribisnis" class="accent-black"> <span>Agribisnis</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="prodi" value="Teknik Pertambangan" class="accent-black"> <span>Teknik Pertambangan</span></label>
+                                </div>
+                            </div>
+                            <!-- Bahasa -->
+                            <div class="space-y-2">
+                                <h4 class="text-xs font-extrabold border-b border-black pb-1">Bahasa</h4>
+                                <div class="space-y-1.5">
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="bahasa" value="" class="accent-black" checked> <span class="text-blue-700 font-extrabold">Semua Bahasa</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="bahasa" value="Indonesia" class="accent-black"> <span>Indonesia</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="bahasa" value="Inggris" class="accent-black"> <span>Inggris</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="bahasa" value="Lainnya" class="accent-black"> <span>Lainnya</span></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kolom Kanan: Kategori & Tahun Terbit -->
+                        <div class="space-y-4">
+                            <!-- Kategori -->
+                            <div class="space-y-2">
+                                <h4 class="text-xs font-extrabold border-b border-black pb-1">Kategori</h4>
+                                <div class="space-y-1.5 max-h-36 overflow-y-auto pr-1">
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="kategori" value="" class="accent-black" checked> <span class="text-blue-700 font-extrabold">Semua Kategori</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="kategori" value="Populer" class="accent-black"> <span>Populer</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="kategori" value="Novel" class="accent-black"> <span>Novel</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="kategori" value="Fiksi" class="accent-black"> <span>Fiksi</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="kategori" value="Penelitian" class="accent-black"> <span>Penelitian</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="kategori" value="Sejarah" class="accent-black"> <span>Sejarah</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="kategori" value="Agama" class="accent-black"> <span>Agama</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="kategori" value="Ensiklopedia" class="accent-black"> <span>Ensiklopedia</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="kategori" value="Hiburan" class="accent-black"> <span>Hiburan</span></label>
+                                </div>
+                            </div>
+                            <!-- Tahun Terbit -->
+                            <div class="space-y-2">
+                                <h4 class="text-xs font-extrabold border-b border-black pb-1">Tahun Terbit</h4>
+                                <div class="space-y-1.5">
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="tahun" value="" class="accent-black" checked> <span class="text-blue-700 font-extrabold">Semua Tahun</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="tahun" value="2020 - sekarang" class="accent-black"> <span>2020 - sekarang</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="tahun" value="2010 - 2020" class="accent-black"> <span>2010 - 2020</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="tahun" value="2000 - 2010" class="accent-black"> <span>2000 - 2010</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="tahun" value="< 2000" class="accent-black"> <span>&lt; 2000</span></label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Tombol Aksi Terapkan -->
+                    <div class="mt-6 pt-3 border-t border-black flex justify-between items-center">
+                        <button onclick="applyFilters()" class="px-6 py-2.5 bg-[#333333] hover:bg-black text-white text-[11px] font-extrabold rounded border-2 border-black active:translate-y-[1px]">
+                            Terapkan
+                        </button>
+                        <button onclick="clearFilter()" class="text-xs underline font-extrabold hover:text-red-600">
+                            Reset Filter
+                        </button>
+                    </div>
+                </div>
+
+                <!-- HASIL KOLEKSI BUKU (GRID DINAMIS 5 KOLOM) -->
+                <div class="space-y-4 pt-2">
+                    <h3 id="current-sort-label" class="text-sm font-extrabold text-black">Terbaru - Terlama</h3>
+                    
+                    <div id="books-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 pb-12">
+                        <!-- Buku akan dimuat di sini secara otomatis melalui JavaScript -->
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+    </div>
+
+    <!-- JAVASCRIPT: Logika Interaktivitas Pop-Up, Search, Filter & Sort secara Live -->
+    <script>
+        // Database Buku Lengkap Sesuai Mockup Kamu dengan tambahan Insight Statistik
+        const booksDatabase = [
+            { id: 1, title: "Struktur Data C++", author: "Prof. Harianto", prodi: "Teknik Informatika", kategori: "Penelitian", bahasa: "Indonesia", tahun: 2024, fromColor: "from-sky-200", toColor: "to-indigo-300", views: 425, stok: 8 },
+            { id: 2, title: "Konsep IMK Modern", author: "Dr. Nurhayati", prodi: "Teknik Informatika", kategori: "Penelitian", bahasa: "Indonesia", tahun: 2023, fromColor: "from-sky-200", toColor: "to-indigo-300", views: 312, stok: 4 },
+            { id: 3, title: "Kalkulus Lanjut", author: "Drs. Wahyudi", prodi: "Matematika", kategori: "Penelitian", bahasa: "Indonesia", tahun: 2019, fromColor: "from-sky-200", toColor: "to-indigo-300", views: 189, stok: 6 },
+            { id: 4, title: "Kimia Fisika II", author: "Ir. Bambang, M.T.", prodi: "Kimia", kategori: "Penelitian", bahasa: "Indonesia", tahun: 2022, fromColor: "from-sky-200", toColor: "to-indigo-300", views: 95, stok: 3 },
+            { id: 5, title: "Fisika Quantum", author: "Prof. Sukarman", prodi: "Fisika", kategori: "Penelitian", bahasa: "Indonesia", tahun: 2023, fromColor: "from-sky-200", toColor: "to-indigo-300", views: 243, stok: 5 },
+            { id: 6, title: "Sistem Basis Data", author: "Dr. Ir. Ridwan", prodi: "Teknik Informatika", kategori: "Penelitian", bahasa: "Indonesia", tahun: 2020, fromColor: "from-sky-200", toColor: "to-indigo-300", views: 512, stok: 12 },
+            { id: 7, title: "Kriptografi Klasik", author: "Drs. Ahmad Jaelani", prodi: "Teknik Informatika", kategori: "Penelitian", bahasa: "Indonesia", tahun: 2018, fromColor: "from-sky-200", toColor: "to-indigo-300", views: 134, stok: 2 },
+            { id: 8, title: "Kimia Analitik I", author: "Dr. Siti Aminah", prodi: "Kimia", kategori: "Penelitian", bahasa: "Indonesia", tahun: 2017, fromColor: "from-sky-200", toColor: "to-indigo-300", views: 88, stok: 4 },
+            { id: 9, title: "Pemrograman Python", author: "Yusuf Akbar, M.Kom.", prodi: "Teknik Informatika", kategori: "Penelitian", bahasa: "Indonesia", tahun: 2025, fromColor: "from-sky-200", toColor: "to-indigo-300", views: 680, stok: 15 },
+            { id: 10, title: "Aljabar Linear", author: "Prof. Hendra Kusuma", prodi: "Matematika", kategori: "Penelitian", bahasa: "Indonesia", tahun: 2016, fromColor: "from-sky-200", toColor: "to-indigo-300", views: 167, stok: 7 }
+        ];
+
+        // State filter & sort saat ini - Diubah kosong ("") agar pertama kali load langsung nampilin semua buku
+        let currentSearchQuery = "";
+        let activeSortOption = "Terbaru - Terlama";
+        let filters = {
+            prodi: "",
+            bahasa: "",
+            kategori: "",
+            tahun: ""
+        };
+
+        // Fungsi Render Buku ke Grid Dinamis (tetap sama karena sudah handle logika string kosong "")
+        function renderBooks() {
+            const grid = document.getElementById('books-grid');
+            grid.innerHTML = ""; // Bersihkan tampilan lama
+
+            // 1. Lakukan Filter
+            let filteredBooks = booksDatabase.filter(book => {
+                const matchesSearch = book.title.toLowerCase().includes(currentSearchQuery.toLowerCase()) || 
+                                      book.author.toLowerCase().includes(currentSearchQuery.toLowerCase());
+                
+                const matchesProdi = !filters.prodi || book.prodi === filters.prodi;
+                const matchesBahasa = !filters.bahasa || book.bahasa === filters.bahasa;
+                const matchesKategori = !filters.kategori || book.kategori === filters.kategori;
+                
+                let matchesTahun = true;
+                if (filters.tahun) {
+                    if (filters.tahun === "2020 - sekarang") matchesTahun = book.tahun >= 2020;
+                    else if (filters.tahun === "2010 - 2020") matchesTahun = book.tahun >= 2010 && book.tahun < 2020;
+                    else if (filters.tahun === "2000 - 2010") matchesTahun = book.tahun >= 2000 && book.tahun < 2010;
+                    else if (filters.tahun === "< 2000") matchesTahun = book.tahun < 2000;
+                }
+
+                return matchesSearch && matchesProdi && matchesBahasa && matchesKategori && matchesTahun;
+            });
+
+            // 2. Lakukan Pengurutan (Sorting)
+            if (activeSortOption === "Terbaru - Terlama") {
+                filteredBooks.sort((a, b) => b.tahun - a.tahun);
+            } else if (activeSortOption === "Terlama - Terbaru") {
+                filteredBooks.sort((a, b) => a.tahun - b.tahun);
+            } else if (activeSortOption === "Terpopuler") {
+                // Diurutkan berdasarkan jumlah views terbesar ke terkecil
+                filteredBooks.sort((a, b) => b.views - a.views);
+            } else if (activeSortOption === "A - Z") {
+                filteredBooks.sort((a, b) => a.title.localeCompare(b.title));
+            } else if (activeSortOption === "Z - A") {
+                filteredBooks.sort((a, b) => b.title.localeCompare(a.title));
+            }
+
+            // 3. Tampilkan Pesan jika Buku tidak ditemukan
+            if (filteredBooks.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-12 text-center border-2 border-dashed border-black bg-white rounded-lg p-6">
+                        <i class="fa-solid fa-triangle-exclamation text-3xl mb-2 text-amber-500"></i>
+                        <p class="font-extrabold text-sm text-black">Buku tidak ditemukan</p>
+                        <p class="text-xs text-gray-500 mt-1">Coba sesuaikan kata kunci pencarian atau matikan filter Anda.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // 4. Gambar Elemen HTML Buku
+            filteredBooks.forEach(book => {
+                const card = document.createElement('div');
+                card.className = "group cursor-pointer";
+                // Menambahkan navigasi dinamis ke halaman detail sesuai ID buku
+                card.setAttribute('onclick', `window.location.href='detail_buku.html?id=${book.id}'`);
+                card.innerHTML = `
+                    <div class="aspect-[3/4] bg-gradient-to-b ${book.fromColor} ${book.toColor} retro-border rounded-lg relative overflow-hidden shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] group-hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] transition-all flex items-center justify-center p-4">
+                        <span class="text-xs font-black text-slate-800 text-center uppercase tracking-tighter">${book.title}</span>
+                    </div>
+                    <div class="mt-2 font-bold text-xs space-y-0.5">
+                        <h4 class="text-black truncate">${book.title}</h4>
+                        <p class="text-gray-500 truncate">${book.author} (${book.tahun})</p>
+                        <!-- Insight Statistik Otomatis (Gaya Brutalisme Baru) -->
+                        <div class="flex items-center space-x-3 text-[10px] text-gray-700 font-extrabold pt-1.5 border-t border-dashed border-black/20 mt-1">
+                            <span class="flex items-center space-x-1" title="Dilihat ${book.views} kali">
+                                <i class="fa-solid fa-eye text-black"></i>
+                                <span>${book.views}</span>
+                            </span>
+                            <span class="flex items-center space-x-1" title="Stok Tersedia: ${book.stok} buku">
+                                <i class="fa-solid fa-layer-group text-black"></i>
+                                <span>${book.stok} eks</span>
+                            </span>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Jalankan Fitur Live Search saat diketik (Instant Search UX)
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            currentSearchQuery = e.target.value;
+            renderBooks();
+        });
+
+        // Menjalankan Filter saat Tombol Terapkan Ditekan
+        function applyFilters() {
+            const selectedProdi = document.querySelector('input[name="prodi"]:checked')?.value || "";
+            const selectedBahasa = document.querySelector('input[name="bahasa"]:checked')?.value || "";
+            const selectedKategori = document.querySelector('input[name="kategori"]:checked')?.value || "";
+            const selectedTahun = document.querySelector('input[name="tahun"]:checked')?.value || "";
+
+            filters = {
+                prodi: selectedProdi,
+                bahasa: selectedBahasa,
+                kategori: selectedKategori,
+                tahun: selectedTahun
+            };
+
+            renderBooks();
+            toggleFilter(); // Tutup modal setelah filter diterapkan
+        }
+
+        // Reset Filter ke Kondisi Awal (Memilih opsi radio button "Semua")
+        function clearFilter() {
+            // Pilih semua radio button yang bernilai "" (Semua)
+            const allProdiRadio = document.querySelector('input[name="prodi"][value=""]');
+            const allBahasaRadio = document.querySelector('input[name="bahasa"][value=""]');
+            const allKategoriRadio = document.querySelector('input[name="kategori"][value=""]');
+            const allTahunRadio = document.querySelector('input[name="tahun"][value=""]');
+
+            if (allProdiRadio) allProdiRadio.checked = true;
+            if (allBahasaRadio) allBahasaRadio.checked = true;
+            if (allKategoriRadio) allKategoriRadio.checked = true;
+            if (allTahunRadio) allTahunRadio.checked = true;
+
+            filters = { prodi: "", bahasa: "", kategori: "", tahun: "" };
+            renderBooks();
+        }
+
+        // Aksi memilih opsi Urutkan
+        function selectSort(optionName) {
+            activeSortOption = optionName;
+            document.getElementById('current-sort-label').innerText = optionName;
+            
+            const dropdown = document.getElementById('sort-dropdown');
+            const listItems = dropdown.querySelectorAll('li');
+            listItems.forEach(item => {
+                if(item.innerText === optionName) {
+                    item.classList.add('bg-[#cccccc]');
+                } else {
+                    item.classList.remove('bg-[#cccccc]');
+                }
+            });
+
+            dropdown.classList.add('hidden');
+            renderBooks();
+        }
+
+        // Fungsi Toggle Visibility Filter Panel
+        function toggleFilter() {
+            const filterModal = document.getElementById('filter-modal');
+            const sortDropdown = document.getElementById('sort-dropdown');
+            sortDropdown.classList.add('hidden');
+            filterModal.classList.toggle('hidden');
+        }
+
+        // Fungsi Toggle Visibility Sort Dropdown
+        function toggleSort() {
+            const sortDropdown = document.getElementById('sort-dropdown');
+            const filterModal = document.getElementById('filter-modal');
+            filterModal.classList.add('hidden');
+            sortDropdown.classList.toggle('hidden');
+        }
+
+        // Render buku pertama kali saat halaman dimuat
+        window.onload = function() {
+            renderBooks();
+        }
+    // Tarik foto dari local storage dan terapkan ke avatar header
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedAvatar = localStorage.getItem('userAvatar');
+        const headerAvatar = document.getElementById('header-avatar');
+        if (savedAvatar && headerAvatar) {
+            headerAvatar.src = savedAvatar;
+        }
+    });
+
+    </script>
+</body>
+</html>

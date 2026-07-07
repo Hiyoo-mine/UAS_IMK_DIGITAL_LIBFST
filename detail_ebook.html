@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail E-Book - Digital Library FST</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f7f5ee;
+        }
+        .retro-border {
+            border: 2px solid #000000;
+        }
+        .hard-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+        }
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f7f5ee;
+            border-left: 2px solid #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #bbbbbb;
+            border: 2px solid #000000;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-hidden flex flex-col md:flex-row">
+
+    <aside class="w-full md:w-64 bg-[#3f3f3f] text-white flex flex-col justify-between border-b-2 md:border-b-0 md:border-r-2 border-black shrink-0 md:h-screen md:sticky md:top-0 z-20">
+        <div>
+            <div class="p-4 flex items-center space-x-3 border-b-2 border-black">
+                <img src="Logo FST 1(1).png" alt="Logo UIN FST" class="w-12 h-12 object-contain">
+                <div class="font-extrabold text-sm tracking-tight leading-none">
+                    <span class="block text-white text-base">Digital</span>
+                    <span class="block text-gray-300 text-base mt-1">Library</span>
+                </div>
+            </div>
+
+            <nav class="mt-4 flex flex-col font-bold text-sm">
+                <a href="dashboard_user.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                    <span class="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                        <i class="fa-solid fa-house"></i>
+                    </span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="koleksi_buku.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                    <span class="w-8 h-8 bg-[#ff6b6b] rounded-md flex items-center justify-center border-2 border-black text-black text-xs">
+                        <i class="fa-solid fa-book"></i>
+                    </span>
+                    <span>Koleksi Buku</span>
+                </a>
+                <a href="koleksi_ebook.html" class="flex items-center space-x-3 px-6 py-4 bg-[#4d4d4d] border-y-2 border-black transition-all">
+                    <span class="w-8 h-8 bg-amber-400 rounded-md flex items-center justify-center border-2 border-black text-black text-xs">
+                        <i class="fa-solid fa-file-invoice"></i>
+                    </span>
+                    <span class="text-white">Koleksi e-book</span>
+                </a>
+                <a href="riwayat.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                    <span class="w-8 h-8 bg-cyan-400 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </span>
+                    <span>Riwayat</span>
+                </a>
+                <a href="favorit.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                    <span class="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                        <i class="fa-solid fa-star"></i>
+                    </span>
+                    <span>Favorit</span>
+                </a>
+                <a href="profil.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                    <span class="w-8 h-8 bg-amber-300 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                        <i class="fa-solid fa-user"></i>
+                    </span>
+                    <span>Profil</span>
+                </a>
+            </nav>
+        </div>
+        <div class="border-t-2 border-black bg-[#333333]">
+            <a href="login.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-red-900/40 transition-all font-bold text-sm text-red-300">
+                <span class="w-8 h-8 bg-slate-300 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                </span>
+                <span>log-out</span>
+            </a>
+        </div>
+    </aside>
+
+    <main class="flex-1 flex flex-col min-w-0 bg-[#f7f5ee] h-screen overflow-hidden">
+        
+        <header class="bg-[#e5ebed] border-b-2 border-black p-4 px-6 flex items-center justify-between shrink-0">
+            <div>
+                <h2 class="text-xl sm:text-2xl font-extrabold text-black">Halo, User</h2>
+                <p class="text-[11px] font-bold text-gray-600 mt-1">Apa yang ingin kamu baca hari ini?</p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="relative w-10 h-10 bg-white rounded-full border-2 border-black flex items-center justify-center hover:bg-gray-100 transition shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                    <i class="fa-solid fa-bell text-black text-lg"></i>
+                    <span class="absolute top-1 right-1 w-3 h-3 bg-amber-500 rounded-full border border-black"></span>
+                </button>
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full bg-slate-400 border-2 border-black overflow-hidden">
+                    <!-- Tambahkan id="header-avatar" di sini -->
+                            <img id="header-avatar" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=120" alt="Avatar" class="w-full h-full object-cover">
+
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=120" alt="Avatar" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- KONTEN AREA -->
+        <div class="flex-1 overflow-y-auto">
+            <div class="p-6 md:p-8 space-y-6">
+                <div>
+                    <a href="koleksi_ebook.html" class="text-sm font-black text-black underline italic tracking-wide">
+                        Koleksi e-book &gt; Detail Buku
+                    </a>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div id="cover-box" class="w-full max-w-[260px] mx-auto md:mx-0 aspect-[3/4] bg-gradient-to-br retro-border rounded-lg relative overflow-hidden shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center p-6 shrink-0">
+                        <span id="ebook-visual-title" class="text-sm font-black text-slate-800 text-center uppercase tracking-tighter select-none">Memuat...</span>
+                    </div>
+
+                    <div class="flex-1 w-full space-y-4">
+                        <div class="space-y-1">
+                            <h1 id="ebook-title" class="text-2xl md:text-3xl font-black text-black tracking-tight uppercase">MEMUAT JUDUL...</h1>
+                            <p id="ebook-author" class="text-sm font-bold text-gray-700">Oleh: Memuat Penulis...</p>
+                        </div>
+
+                        <div class="bg-[#fffdf3] retro-border rounded-xl p-5 md:p-6 space-y-3 shadow-[2px_2px_0px_rgba(0,0,0,1)] text-xs md:text-sm font-bold text-black leading-relaxed">
+                            <p><span class="inline-block w-28 text-slate-600">Penerbit:</span> <span id="meta-penerbit" class="font-extrabold">UIN Press Jakarta</span></p>
+                            <p><span class="inline-block w-28 text-slate-600">jumlah hal.:</span> <span id="meta-pages" class="font-extrabold">123 halaman</span></p>
+                            <p><span class="inline-block w-28 text-slate-600">Kategori:</span> <span id="meta-kategori" class="font-extrabold">Fiksi, Populer</span></p>
+                            <p><span class="inline-block w-28 text-slate-600">Bahasa:</span> <span id="meta-bahasa" class="font-extrabold">Indonesia</span></p>
+                            <p><span class="inline-block w-28 text-slate-600">ID buku:</span> <span id="meta-id" class="font-extrabold text-blue-800 font-mono">PB00001</span></p>
+                            <div class="pt-2 border-t border-dashed border-black/20">
+                                <span class="block text-slate-600 mb-1">Deskripsi:</span>
+                                <p id="meta-deskripsi" class="text-gray-700 font-normal leading-relaxed text-xs md:text-sm">Buku ini menceritakan tentang seorang mahasiswa yang...</p>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end pt-1">
+                            <a href="baca_ebook.html" onclick="startReading()" class="p-2.5 px-6 bg-[#ffff99] hover:bg-[#ffff77] active:bg-[#e6e600] border-2 border-black rounded-lg text-xs font-extrabold text-black flex items-center space-x-2 shadow-[2px_2px_0px_rgba(0,0,0,1)] active:translate-y-[1.5px] active:shadow-[1px_1px_0px_rgba(0,0,0,1)] transition-all">
+                                <i class="fa-solid fa-book-open"></i>
+                                <span>Baca e-book</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4 pt-4 pb-12">
+                    <h3 class="text-base sm:text-lg font-black text-black uppercase tracking-tight">Rekomendasi Buku Serupa</h3>
+                    <div id="rekomendasi-grid" class="grid grid-cols-2 sm:grid-cols-5 gap-4"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full bg-[#ffff99] border-t-2 border-black grid grid-cols-3 text-xs sm:text-sm font-black text-black text-center select-none shrink-0">
+            <button onclick="shareEbook()" class="py-4 border-r-2 border-black hover:bg-[#ffff77] active:bg-[#e6e600] flex items-center justify-center space-x-2 transition-all">
+                <i class="fa-solid fa-share-nodes text-lg"></i>
+                <span>Bagikan</span>
+            </button>
+            <button id="btn-fav" onclick="favoriteEbook()" class="py-4 border-r-2 border-black hover:bg-[#ffff77] active:bg-[#e6e600] flex items-center justify-center space-x-2 transition-all">
+                <i class="fa-solid fa-heart text-red-500 text-lg"></i>
+                <span id="text-fav">Favorit</span>
+            </button>
+            <button id="btn-read-status" onclick="markAsRead()" class="py-4 hover:bg-[#ffff77] active:bg-[#e6e600] flex items-center justify-center space-x-2 transition-all">
+                <i class="fa-solid fa-bookmark text-lg"></i>
+                <span id="text-read-status">Selesai dibaca</span>
+            </button>
+        </div>
+    </main>
+
+    <div id="toast-notif" class="fixed bottom-24 right-6 bg-white border-2 border-black p-4 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-50 text-xs sm:text-sm font-bold text-black hidden flex items-center space-x-3 max-w-sm">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-green-700 text-lg sm:text-xl"></i>
+        <span id="toast-text">Permintaan sukses!</span>
+    </div>
+
+    <script>
+
+        const ebooksDatabase = [
+            { id: 11, title: "Git & GitHub Guidebook", author: "Yusuf Akbar, M.Kom.", genre: "Teknik Informatika", kategori: "Penelitian", bahasa: "Indonesia", tahun: 2023, publisher: "FST UIN Press", pages: "230 halaman", code: "EB-GIT23", views: 980, format: "PDF", size: "12.4 MB", fromColor: "from-amber-200", toColor: "to-red-300" },
+            { id: 12, title: "Etika Akademik IT", author: "Dr. Nurhayati", genre: "Teknik Informatika", kategori: "Penelitian", bahasa: "Indonesia", tahun: 2022, publisher: "Gramedia Digital", pages: "185 halaman", code: "EB-ETI22", views: 340, format: "EPUB", size: "4.8 MB", fromColor: "from-sky-200", toColor: "to-emerald-300" },
+            { id: 13, title: "Kalkulus E-Edition", author: "Drs. Wahyudi", genre: "Matematika", kategori: "Populer", bahasa: "Indonesia", tahun: 2024, publisher: "Airlangga Press", pages: "420 halaman", code: "EB-KAL24", views: 550, format: "PDF", size: "18.1 MB", fromColor: "from-pink-200", toColor: "to-purple-300" },
+            { id: 14, title: "Siber Sec: Pengenalan", author: "Badan Siber FST", genre: "Teknik Informatika", kategori: "Penelitian", bahasa: "Indonesia", tahun: 2025, publisher: "FST UIN Press", pages: "160 halaman", code: "EB-CYB25", views: 1210, format: "PDF", size: "8.9 MB", fromColor: "from-slate-200", toColor: "to-indigo-300" },
+            { id: 15, title: "Fisika Dasar Elektron", author: "Prof. Sukarman", genre: "Fisika", kategori: "Populer", bahasa: "Indonesia", tahun: 2020, publisher: "Sains Press", pages: "310 halaman", code: "EB-FIS20", views: 410, format: "PDF", size: "15.3 MB", fromColor: "from-teal-200", toColor: "to-sky-300" }
+        ];
+
+        function getBookIdFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            return parseInt(params.get('id')) || 11;
+        }
+
+        // --- STATE MANAGEMENT ---
+        function checkStatus() {
+            const bookId = getBookIdFromURL();
+            const history = JSON.parse(localStorage.getItem('userHistory')) || { ebooksDibaca: [], ebooksSelesai: [] };
+            const favs = JSON.parse(localStorage.getItem('userFavorites')) || [];
+            
+            // Check Read Status
+            const isRead = history.ebooksSelesai.find(b => b.id === bookId);
+            document.getElementById('text-read-status').innerText = isRead ? "Batal Selesai" : "Selesai dibaca";
+
+            // Check Fav Status
+            const isFav = favs.find(f => f.id === bookId && f.type === 'ebook');
+            document.getElementById('text-fav').innerText = isFav ? "Hapus Fav" : "Favorit";
+        }
+
+        function startReading() {
+            const book = ebooksDatabase.find(b => b.id === getBookIdFromURL());
+            if (book) {
+                let history = JSON.parse(localStorage.getItem('userHistory')) || { borrowing: [], returned: [], ebooksDibaca: [], ebooksSelesai: [] };
+                if (!history.ebooksSelesai.find(b => b.id === book.id) && !history.ebooksDibaca.find(b => b.id === book.id)) {
+                    history.ebooksDibaca.push({ id: book.id, title: book.title, color: book.fromColor + " " + book.toColor });
+                    localStorage.setItem('userHistory', JSON.stringify(history));
+                }
+            }
+        }
+
+        function markAsRead() {
+            const bookId = getBookIdFromURL();
+            const book = ebooksDatabase.find(b => b.id === bookId);
+            let history = JSON.parse(localStorage.getItem('userHistory')) || { borrowing: [], returned: [], ebooksDibaca: [], ebooksSelesai: [] };
+            
+            const indexSelesai = history.ebooksSelesai.findIndex(b => b.id === bookId);
+            
+            if (indexSelesai > -1) {
+                history.ebooksSelesai.splice(indexSelesai, 1);
+                history.ebooksDibaca.push({ id: book.id, title: book.title, color: book.fromColor + " " + book.toColor });
+                showToast("Buku dihapus dari riwayat selesai!");
+            } else {
+                history.ebooksSelesai.push({ id: book.id, title: book.title, color: book.fromColor + " " + book.toColor });
+                history.ebooksDibaca = history.ebooksDibaca.filter(b => b.id !== bookId);
+                showToast("Buku ditandai Selesai dibaca!");
+            }
+            
+            localStorage.setItem('userHistory', JSON.stringify(history));
+            checkStatus();
+        }
+
+        function favoriteEbook() {
+            const book = ebooksDatabase.find(b => b.id === getBookIdFromURL());
+            if (!book) return;
+            let favs = JSON.parse(localStorage.getItem('userFavorites')) || [];
+            const index = favs.findIndex(b => b.id === book.id);
+            if (index > -1) {
+                favs.splice(index, 1);
+                showToast("Dihapus dari Favorit!");
+            } else {
+                favs.push({ id: book.id, title: book.title, color: book.fromColor + " " + book.toColor, type: 'ebook' });
+                showToast("Ditambahkan ke Favorit!");
+            }
+            localStorage.setItem('userFavorites', JSON.stringify(favs));
+            checkStatus();
+        }
+
+        function renderBookDetails() {
+            const bookId = getBookIdFromURL();
+            const book = ebooksDatabase.find(b => b.id === bookId);
+            if (book) {
+                document.getElementById('ebook-title').innerText = book.title;
+                document.getElementById('ebook-visual-title').innerText = book.title;
+                document.getElementById('ebook-author').innerText = `Oleh: ${book.author} (${book.tahun})`;
+                
+                const coverBox = document.getElementById('cover-box');
+                coverBox.className = `w-full max-w-[260px] mx-auto md:mx-0 aspect-[3/4] bg-gradient-to-br ${book.fromColor} ${book.toColor} retro-border rounded-lg relative overflow-hidden shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center p-6 shrink-0`;
+                
+                document.getElementById('meta-penerbit').innerText = book.publisher;
+                document.getElementById('meta-pages').innerText = book.pages;
+                document.getElementById('meta-kategori').innerText = `${book.kategori}, ${book.genre}`;
+                document.getElementById('meta-bahasa').innerText = book.bahasa;
+                document.getElementById('meta-id').innerText = book.code;
+                document.getElementById('meta-deskripsi').innerText = `E-Book "${book.title}" ini diterbitkan oleh ${book.publisher} pada ${book.tahun}. Format ${book.format} berukuran ${book.size}.`;
+                renderRecommendations(book.id, book.genre);
+            }
+            checkStatus();
+        }
+
+        function renderRecommendations(currentId, currentGenre) {
+            const grid = document.getElementById('rekomendasi-grid');
+            grid.innerHTML = '';
+            ebooksDatabase.filter(b => b.id !== currentId).sort((a,b) => (a.genre === currentGenre ? -1 : 1)).slice(0, 5).forEach(book => {
+                grid.innerHTML += `
+                    <a href="detail_ebook.html?id=${book.id}" class="bg-white rounded-lg retro-border p-3 shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all flex flex-col justify-between group">
+                        <div class="w-full aspect-[3/4] bg-gradient-to-br ${book.fromColor} ${book.toColor} rounded-md border border-black flex items-center justify-center p-2 text-center">
+                            <span class="text-[9px] font-black text-slate-800 leading-tight uppercase">${book.title}</span>
+                        </div>
+                        <h4 class="text-[10px] font-black text-black mt-2 truncate group-hover:underline uppercase">${book.title}</h4>
+                    </a>
+                `;
+            });
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast-notif');
+            toast.classList.remove('hidden');
+            document.getElementById('toast-text').innerText = message;
+            setTimeout(() => toast.classList.add('hidden'), 3000);
+        }
+
+        function shareEbook() { showToast("Link berhasil disalin!"); }
+
+        window.onload = renderBookDetails;
+
+    // Tarik foto dari local storage dan terapkan ke avatar header
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedAvatar = localStorage.getItem('userAvatar');
+        const headerAvatar = document.getElementById('header-avatar');
+        if (savedAvatar && headerAvatar) {
+            headerAvatar.src = savedAvatar;
+        }
+    });
+    </script>
+</body>
+</html>

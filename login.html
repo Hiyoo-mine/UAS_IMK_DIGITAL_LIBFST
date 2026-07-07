@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Digital Library FST</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Menggunakan font Monospace agar mirip dengan visual asli di Figma */
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #e5ebed; /* Warna dasar abu-abu terang */
+        }
+        /* Efek bayangan tegas brutal retro pada tombol & card */
+        .hard-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+        }
+        .btn-active {
+            border: 2px solid #000000;
+            box-shadow: inset 2px 2px 0px rgba(0,0,0,0.3);
+            transform: translate(1px, 1px);
+        }
+    </style>
+</head>
+<body class="min-h-screen p-0 m-0 overflow-x-hidden">
+
+    <!-- CONTAINER UTAMA (Split Screen 50-50 FULL SCREEN Tanpa Margin/Ruang Gelap) -->
+    <div class="w-full min-h-screen flex flex-col md:flex-row">
+        
+        <!-- SISI KIRI: GAMBAR BACKDROP (Jendela Hujan + Gedung + Logo UIN FST) - 50% Lebar Layar -->
+        <div class="w-full md:w-1/2 relative bg-cover bg-center min-h-[40vh] md:min-h-screen border-b-2 md:border-b-0 md:border-r-2 border-black" 
+             style="background-image: url('bg.png');">
+            <!-- Overlay kaca berair / buram tipis -->
+            <div class="absolute inset-0 bg-slate-900/10 backdrop-blur-[5px]"></div>
+            
+            <!-- Logo Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta -->
+            <div class="absolute inset-0 flex items-center justify-center p-6">
+                <img src="Logo FST 1(1).png" alt="Logo FST UIN Jakarta" class="w-48 h-48 sm:w-56 sm:h-56 object-contain drop-shadow-md">
+            </div>
+        </div>
+
+        <!-- SISI KANAN: FORM INTERAKSI LOGIN - 50% Lebar Layar -->
+        <div class="w-full md:w-1/2 bg-cover bg-center p-6 sm:p-12 flex flex-col justify-center relative min-h-[60vh] md:min-h-screen"
+             style="background-image: url('bg2.png');">
+            <!-- Overlay warna krem transparan agar background gedung terlihat samar di belakang form -->
+            <div class="absolute inset-0 bg-[#e5ebed]/80"></div>
+
+            <div class="relative z-10 w-full max-w-md mx-auto space-y-6">
+                
+                <!-- Judul Utama -->
+                <div class="space-y-2">
+                    <h1 class="text-2xl sm:text-3xl font-extrabold text-black tracking-tight">Digital Library - FST</h1>
+                    <p class="text-xs font-bold text-gray-800 leading-relaxed">
+                        Selamat datang di laman website perpustakaan digital FST UIN Jakarta.<br>Silahakan login.
+                    </p>
+                </div>
+
+                <!-- BOX UTAMA FORM (Warna Krem Kekuningan dengan Border Hitam Tebal) -->
+                <div class="bg-[#fffdf3] border-2 border-black rounded-xl p-6 space-y-4 shadow-sm">
+                    
+                    <!-- Input Username -->
+                    <div class="space-y-1">
+                        <label class="block text-xs font-extrabold text-black">Username atau email (@uinjkt.ac.id)</label>
+                        <input type="text" placeholder="Masukkan email / username..." 
+                               class="w-full p-2.5 bg-white border-2 border-black rounded-lg text-xs text-gray-700 outline-none focus:bg-amber-50/30">
+                    </div>
+
+                    <!-- Input Password -->
+                    <div class="space-y-1">
+                        <label class="block text-xs font-extrabold text-black">Password</label>
+                        <input type="password" placeholder="Masukkan password..." 
+                               class="w-full p-2.5 bg-white border-2 border-black rounded-lg text-xs text-gray-700 outline-none focus:bg-amber-50/30">
+                        <div class="text-right">
+                            <a href="#" class="text-[11px] font-bold text-black hover:underline">lupa password?</a>
+                        </div>
+                    </div>
+
+                    <!-- Pilihan Identitas (Mahasiswa, Dosen, Admin) -->
+                    <div class="space-y-2">
+                        <label class="block text-xs font-extrabold text-black">Identitas</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <!-- Tombol Mahasiswa (Warna Hijau Pastel) -->
+                            <button id="role-mhs" onclick="selectRole('mahasiswa')" 
+                                    class="p-2.5 bg-[#d2e7d6] border-2 border-black rounded-lg text-xs font-bold text-black hard-shadow hover:translate-y-[1px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all">
+                                Mahasiswa
+                            </button>
+                            <!-- Tombol Dosen/Staff (Warna Biru/Cyan Pastel) -->
+                            <button id="role-dosen" onclick="selectRole('dosen')" 
+                                    class="p-2.5 bg-[#d2e2ec] border-2 border-black rounded-lg text-xs font-bold text-black hard-shadow hover:translate-y-[1px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all">
+                                Dosen/ staff
+                            </button>
+                        </div>
+                        <div class="flex justify-center pt-1">
+                            <!-- Tombol Admin (Warna Ungu Pastel di Tengah) -->
+                            <button id="role-admin" onclick="selectRole('admin')" 
+                                    class="w-2/3 p-2.5 bg-[#c9cef2] border-2 border-black rounded-lg text-xs font-bold text-black hard-shadow hover:translate-y-[1px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all">
+                                Admin
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tombol Submit Login Utama -->
+                    <div class="pt-2">
+                        <button onclick="navigateDashboard()" 
+                                class="w-full p-3 bg-[#444444] hover:bg-[#333333] text-white text-xs font-extrabold rounded-xl border-2 border-black hard-shadow transition-all">
+                            Login
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Footer Informasi Bantuan -->
+                <div class="text-center text-[11px] font-bold text-black">
+                    terjadi masalah saat login? <a href="#" class="underline hover:text-gray-700">hubungi admin</a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT: Interaksi Pilihan Identitas & Arah Link Halaman -->
+    <script>
+        let selectedRole = 'mahasiswa'; // Role default bawaan
+
+        function selectRole(role) {
+            selectedRole = role;
+            
+            // Reset bayangan semua tombol ke setelan awal
+            document.getElementById('role-mhs').className = "p-2.5 bg-[#d2e7d6] border-2 border-black rounded-lg text-xs font-bold text-black hard-shadow transition-all";
+            document.getElementById('role-dosen').className = "p-2.5 bg-[#d2e2ec] border-2 border-black rounded-lg text-xs font-bold text-black hard-shadow transition-all";
+            document.getElementById('role-admin').className = "w-2/3 p-2.5 bg-[#c9cef2] border-2 border-black rounded-lg text-xs font-bold text-black hard-shadow transition-all";
+
+            // Berikan efek aktif klik ke dalam (inset) pada tombol yang dipilih aktif
+            if(role === 'mahasiswa') {
+                document.getElementById('role-mhs').classList.add('btn-active');
+                document.getElementById('role-mhs').classList.remove('hard-shadow');
+            } else if(role === 'dosen') {
+                document.getElementById('role-dosen').classList.add('btn-active');
+                document.getElementById('role-dosen').classList.remove('hard-shadow');
+            } else if(role === 'admin') {
+                document.getElementById('role-admin').classList.add('btn-active');
+                document.getElementById('role-admin').classList.remove('hard-shadow');
+            }
+        }
+
+        // Fungsi Link Navigasi Terpisah Sesuai Permintaanmu
+        function navigateDashboard() {
+            if (selectedRole === 'admin') {
+                window.location.href = 'dashboard_admin.html';
+            } else {
+                // Mahasiswa dan Dosen diarahkan ke dashboard user utama
+                window.location.href = 'dashboard_user.html';
+            }
+        }
+
+        // Set pilihan awal secara visual saat halaman dimuat
+        selectRole('mahasiswa');
+    </script>
+</body>
+</html>

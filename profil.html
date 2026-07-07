@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil - Digital Library FST</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { font-family: 'Courier New', Courier, monospace; background-color: #f7f5ee; }
+        .retro-card { background-color: #fffef0; border: 2px solid #000000; box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1); }
+        .sidebar-active { background-color: #555555; border-top: 2px solid #000000; border-bottom: 2px solid #000000; }
+        .badge-transaksi { border: 2px solid #000; box-shadow: 2px 2px 0px 0px #000; }
+        
+        /* Animasi modal sederhana */
+        .modal-enter { animation: fadeIn 0.2s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden relative">
+
+    <div class="w-full min-h-screen flex flex-col md:flex-row">
+        
+        
+        <!-- SIDEBAR -->
+        <aside class="w-full md:w-64 bg-[#3f3f3f] text-white flex flex-col justify-between border-b-2 md:border-b-0 md:border-r-2 border-black shrink-0 md:h-screen md:sticky md:top-0">
+            <div>
+                <div class="p-4 flex items-center space-x-3 border-b-2 border-black">
+                    <img src="Logo FST 1(1).png" alt="Logo UIN FST" class="w-12 h-12 object-contain">
+                    <div class="font-extrabold text-sm tracking-tight leading-none">
+                        <span class="block text-white text-base">Digital</span>
+                        <span class="block text-gray-300 text-base mt-1">Library</span>
+                    </div>
+                </div>
+                <nav class="mt-4 flex flex-col font-bold text-sm">
+                    <a href="dashboard_user.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all"><span class="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center border-2 border-black text-black text-xs"><i class="fa-solid fa-house"></i></span><span>Dashboard</span></a>
+                    <a href="koleksi_buku.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all"><span class="w-8 h-8 bg-[#ff6b6b] rounded-md flex items-center justify-center border-2 border-black text-black text-xs"><i class="fa-solid fa-book"></i></span><span>Koleksi Buku</span></a>
+                    <a href="koleksi_ebook.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all"><span class="w-8 h-8 bg-amber-400 rounded-md flex items-center justify-center border-2 border-black text-black text-xs"><i class="fa-solid fa-file-invoice"></i></span><span>Koleksi e-book</span></a>
+                    <a href="riwayat.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all"><span class="w-8 h-8 bg-cyan-400 rounded-full flex items-center justify-center border-2 border-black text-black text-xs"><i class="fa-solid fa-clock-rotate-left"></i></span><span>Riwayat</span></a>
+                    <a href="favorit.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all"><span class="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center border-2 border-black text-black text-xs"><i class="fa-solid fa-star"></i></span><span>Favorit</span></a>
+                    <a href="profil.html" class="sidebar-active flex items-center space-x-3 px-6 py-4 transition-all"><span class="w-8 h-8 bg-amber-300 rounded-full flex items-center justify-center border-2 border-black text-black text-xs"><i class="fa-solid fa-user"></i></span><span>Profil</span></a>
+                </nav>
+            </div>
+            <div class="border-t-2 border-black bg-[#333333]">
+                <a href="login.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-red-900/40 transition-all font-bold text-sm text-red-300"><span class="w-8 h-8 bg-slate-300 rounded-full flex items-center justify-center border-2 border-black text-black text-xs"><i class="fa-solid fa-arrow-right-from-bracket"></i></span><span>log-out</span></a>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="flex-1 p-8 overflow-y-auto">
+            <div class="max-w-3xl mx-auto">
+                
+                <!-- BOX ATAS -->
+                <div class="retro-card p-6 mb-6">
+                    <div class="flex justify-end mb-2">
+                        <i class="fa-solid fa-gear text-xl cursor-pointer hover:text-gray-600 transition-colors"></i>
+                    </div>
+                    <div class="flex flex-col sm:flex-row items-center gap-6">
+                        <div class="relative">
+                            <!-- Container foto sudah berbentuk bulat dan meng-crop gambar otomatis ke tengah -->
+                            <div class="w-32 h-32 rounded-full border-2 border-black overflow-hidden bg-gray-200">
+                                <img id="profile-img" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200" class="w-full h-full object-cover">
+                            </div>
+                            <!-- Tombol Ubah Foto Profil -->
+                            <button onclick="openAvatarModal()" class="absolute bottom-0 right-0 w-10 h-10 bg-white border-2 border-black rounded-full flex items-center justify-center hover:bg-gray-100 shadow-[2px_2px_0px_#000] active:translate-y-[2px] active:shadow-none transition-all"><i class="fa-solid fa-pen text-sm"></i></button>
+                        </div>
+                        <div class="flex-1 text-center sm:text-left">
+                            <h2 class="text-2xl font-black uppercase">Nabila Nayla</h2>
+                            <p class="text-green-600 font-bold text-sm mb-1">aktif</p>
+                            <p class="font-bold text-md">Mahasiswa</p>
+                            <p class="text-xs font-bold text-gray-500">tanggal bergabung: 1 Juni 2026</p>
+                        </div>
+                        <div class="flex gap-3">
+                            <div class="badge-transaksi bg-blue-100 p-4 flex flex-col items-center">
+                                <i class="fa-solid fa-clock text-lg mb-1"></i>
+                                <span class="font-black text-xl">3</span>
+                                <span class="text-xs font-bold">Transaksi</span>
+                            </div>
+                            <div class="badge-transaksi bg-red-100 p-4 flex flex-col items-center">
+                                <i class="fa-solid fa-triangle-exclamation text-lg mb-1"></i>
+                                <span class="font-black text-xl">0</span>
+                                <span class="text-xs font-bold">Pelanggaran</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BOX BAWAH (BIODATA) -->
+                <div class="retro-card p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-lg font-black uppercase">Biodata</h3>
+                        
+                        <!-- Grup Tombol Default (Perbarui Data) -->
+                        <div id="bio-actions-default">
+                            <button onclick="toggleBioEdit(true)" class="bg-yellow-200 border-2 border-black px-4 py-2 font-bold text-sm flex items-center gap-2 shadow-[2px_2px_0px_0px_#000] hover:bg-yellow-300 active:translate-y-[2px] active:shadow-none transition-all"><i class="fa-solid fa-pen"></i> Perbarui data</button>
+                        </div>
+                        
+                        <!-- Grup Tombol Simpan & Batal (Sembunyi by default) -->
+                        <div id="bio-actions-edit" class="hidden flex gap-3">
+                            <button onclick="saveBio()" class="bg-green-300 border-2 border-black px-4 py-2 font-bold text-sm shadow-[2px_2px_0px_0px_#000] hover:bg-green-400 active:translate-y-[2px] active:shadow-none transition-all">Simpan</button>
+                            <button onclick="toggleBioEdit(false)" class="bg-red-300 border-2 border-black px-4 py-2 font-bold text-sm shadow-[2px_2px_0px_0px_#000] hover:bg-red-400 active:translate-y-[2px] active:shadow-none transition-all">Batal</button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 text-sm font-bold">
+                        <div>
+                            <p class="text-gray-500 mb-1">Nama Lengkap</p>
+                            <p class="font-black">NABILA NAYLA HUSNA</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 mb-1">Username</p>
+                            <input type="text" id="bio-username" value="nabila_nayla24" disabled class="font-black w-full bg-transparent border-2 border-transparent outline-none disabled:text-black">
+                        </div>
+                        <div>
+                            <p class="text-gray-500 mb-1">NIM</p>
+                            <p class="font-black">12409011030072</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 mb-1">Jurusan</p>
+                            <p class="font-black">Teknik Informatika</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 mb-1">Tanggal Lahir</p>
+                            <p class="font-black">19/05/06</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 mb-1">Jenis Kelamin</p>
+                            <p class="font-black">Perempuan</p>
+                        </div>
+                        <div class="col-span-1 md:col-span-2">
+                            <p class="text-gray-500 mb-1">Email</p>
+                            <input type="email" id="bio-email" value="nabila.nayla24@mhs.uinjkt.ac.id" disabled class="font-black w-full bg-transparent border-2 border-transparent outline-none disabled:text-black">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL UBAH FOTO PROFIL -->
+    <div id="avatar-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center modal-enter">
+        <div class="retro-card p-8 max-w-sm w-full mx-4 text-center">
+            <h3 class="font-black text-lg uppercase mb-6">Ingin mengubah foto profil anda?</h3>
+            <p class="text-xs font-bold text-gray-600 mb-6">(Ukuran file maksimal 5MB)</p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button onclick="document.getElementById('avatar-input').click()" class="bg-yellow-300 border-2 border-black font-bold px-6 py-2 shadow-[2px_2px_0px_0px_#000] hover:bg-yellow-400 active:translate-y-[2px] active:shadow-none transition-all">Pilih Gambar</button>
+                <button onclick="closeAvatarModal()" class="bg-gray-200 border-2 border-black font-bold px-6 py-2 shadow-[2px_2px_0px_0px_#000] hover:bg-gray-300 active:translate-y-[2px] active:shadow-none transition-all">Batal</button>
+            </div>
+            
+            <!-- Input file disembunyikan, dipanggil via tombol Pilih Gambar -->
+            <input type="file" id="avatar-input" accept="image/*" class="hidden" onchange="handleAvatarSelect(event)">
+        </div>
+    </div>
+
+    <!-- SCRIPT LOGIKA UBAH PROFIL DAN BIODATA -->
+    <script>
+        // --- LOGIKA MODAL UBAH FOTO PROFIL ---
+        const avatarModal = document.getElementById('avatar-modal');
+        const avatarInput = document.getElementById('avatar-input');
+        const profileImg = document.getElementById('profile-img');
+
+        function openAvatarModal() {
+            avatarModal.classList.remove('hidden');
+        }
+
+        function closeAvatarModal() {
+            avatarModal.classList.add('hidden');
+            avatarInput.value = ''; // Reset input agar bisa pilih file yang sama lagi kalau dibatalkan
+        }
+
+        function handleAvatarSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                // Validasi ukuran 5MB (5 * 1024 * 1024 bytes)
+                if (file.size > 5242880) {
+                    alert("Gagal! Ukuran gambar terlalu besar. Maksimal 5MB.");
+                    avatarInput.value = '';
+                    return;
+                }
+
+                // Membaca file dan mengubah src gambar
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imgData = e.target.result;
+                    profileImg.src = imgData;
+                    
+                    // SIMPAN KE LOCAL STORAGE
+                    localStorage.setItem('userAvatar', imgData);
+                    
+                    closeAvatarModal();
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // --- LOGIKA UBAH BIODATA (EDITABLE FIELD) ---
+        let originalUsername = "";
+        let originalEmail = "";
+
+        const usernameInput = document.getElementById('bio-username');
+        const emailInput = document.getElementById('bio-email');
+        const defaultActions = document.getElementById('bio-actions-default');
+        const editActions = document.getElementById('bio-actions-edit');
+
+        function toggleBioEdit(isEditing) {
+            if (isEditing) {
+                // Simpan data lama untuk jaga-jaga kalau user klik 'Batal'
+                originalUsername = usernameInput.value;
+                originalEmail = emailInput.value;
+                
+                // Aktifkan input field
+                usernameInput.disabled = false;
+                emailInput.disabled = false;
+                
+                // Beri gaya CSS agar terlihat seperti box input yang bisa diketik
+                usernameInput.classList.add('bg-white', 'border-black', 'p-2');
+                usernameInput.classList.remove('bg-transparent', 'border-transparent');
+                emailInput.classList.add('bg-white', 'border-black', 'p-2');
+                emailInput.classList.remove('bg-transparent', 'border-transparent');
+                
+                // Fokus otomatis ke input username
+                usernameInput.focus();
+            } else {
+                // Kembalikan ke data lama (Aksi batal)
+                usernameInput.value = originalUsername;
+                emailInput.value = originalEmail;
+                
+                // Matikan input field
+                usernameInput.disabled = true;
+                emailInput.disabled = true;
+                
+                // Hapus gaya CSS input box
+                usernameInput.classList.remove('bg-white', 'border-black', 'p-2');
+                usernameInput.classList.add('bg-transparent', 'border-transparent');
+                emailInput.classList.remove('bg-white', 'border-black', 'p-2');
+                emailInput.classList.add('bg-transparent', 'border-transparent');
+            }
+
+            // Ganti tombol UI
+            defaultActions.classList.toggle('hidden', isEditing);
+            editActions.classList.toggle('hidden', !isEditing);
+        }
+
+        function saveBio() {
+            // Validasi kosong
+            if(usernameInput.value.trim() === "" || emailInput.value.trim() === "") {
+                alert("Username dan Email tidak boleh kosong!");
+                return;
+            }
+
+            // Simpan perubahan dan kunci ulang field-nya (Mematikan mode edit)
+            usernameInput.disabled = true;
+            emailInput.disabled = true;
+            
+            // Hapus gaya CSS input box
+            usernameInput.classList.remove('bg-white', 'border-black', 'p-2');
+            usernameInput.classList.add('bg-transparent', 'border-transparent');
+            emailInput.classList.remove('bg-white', 'border-black', 'p-2');
+            emailInput.classList.add('bg-transparent', 'border-transparent');
+
+            // Ganti tombol UI kembali ke default
+            defaultActions.classList.remove('hidden');
+            editActions.classList.add('hidden');
+            
+            // Notifikasi sukses (bisa juga pakai UI Toast yang sudah kita buat sebelumnya jika perlu)
+            alert("Biodata berhasil diperbarui!");
+        }
+
+        // --- TAMBAHAN: SINKRONISASI DATA SAAT HALAMAN DIMUAT ---
+        window.addEventListener('DOMContentLoaded', () => {
+            // Ambil foto dari Local Storage
+            const savedAvatar = localStorage.getItem('userAvatar');
+            if (savedAvatar) {
+                if(profileImg) profileImg.src = savedAvatar;
+            }
+            
+            // Ambil nama dari Local Storage (opsional, jika ingin nama juga sinkron)
+            // const savedUsername = localStorage.getItem('userName');
+            // if(savedUsername) usernameInput.value = savedUsername;
+        });
+    </script>
+</body>
+</html>

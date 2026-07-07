@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koleksi E-Book - Digital Library FST</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Menggunakan font Monospace agar mirip dengan visual di Figma */
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f7f5ee; /* Warna krem dasar aplikasi */
+        }
+        /* Style brutalism stroke hitam tebal */
+        .retro-border {
+            border: 2px solid #000000;
+        }
+        .hard-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+        }
+        /* Kustomisasi scrollbar agar rapi */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f7f5ee;
+            border-left: 2px solid #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #bbbbbb;
+            border: 2px solid #000000;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden">
+
+    <!-- CONTAINER UTAMA - Full Screen (Full Bleed) -->
+    <div class="w-full min-h-screen flex flex-col md:flex-row">
+        
+        <!-- ================= SIDEBAR KIRI (STICKY DI DESKTOP) ================= -->
+        <aside class="w-full md:w-64 bg-[#3f3f3f] text-white flex flex-col justify-between border-b-2 md:border-b-0 md:border-r-2 border-black shrink-0 md:h-screen md:sticky md:top-0 z-20">
+            <div>
+                <!-- Brand & Logo Section -->
+                <div class="p-4 flex items-center space-x-3 border-b-2 border-black">
+                    <!-- Logo FST UIN Jakarta Bundar -->
+                    <img src="Logo FST 1(1).png" alt="Logo UIN FST" class="w-12 h-12 object-contain">
+                    <div class="font-extrabold text-sm tracking-tight leading-none">
+                        <span class="block text-white text-base">Digital</span>
+                        <span class="block text-gray-300 text-base mt-1">Library</span>
+                    </div>
+                </div>
+
+                <!-- Menu Navigasi -->
+                <nav class="mt-4 flex flex-col font-bold text-sm">
+                    <!-- Dashboard -->
+                    <a href="dashboard_user.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-house"></i>
+                        </span>
+                        <span>Dashboard</span>
+                    </a>
+
+                    <!-- Koleksi Buku -->
+                    <a href="koleksi_buku.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-[#ff6b6b] rounded-md flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-book"></i>
+                        </span>
+                        <span>Koleksi Buku</span>
+                    </a>
+
+                    <!-- Koleksi E-Book (Aktif) -->
+                    <a href="koleksi_ebook.html" class="flex items-center space-x-3 px-6 py-4 bg-[#4d4d4d] border-y-2 border-black transition-all">
+                        <span class="w-8 h-8 bg-amber-400 rounded-md flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-file-invoice"></i>
+                        </span>
+                        <span class="text-white">Koleksi e-book</span>
+                    </a>
+
+                    <!-- Riwayat -->
+                    <a href="riwayat.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-cyan-400 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                        </span>
+                        <span>Riwayat</span>
+                    </a>
+
+                    <!-- Favorit -->
+                    <a href="favorit.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-star"></i>
+                        </span>
+                        <span>Favorit</span>
+                    </a>
+
+                    <!-- Profil -->
+                    <a href="profil.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-amber-300 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+                        <span>Profil</span>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Log out (Bawah) -->
+            <div class="border-t-2 border-black bg-[#333333]">
+                <a href="login.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-red-900/40 transition-all font-bold text-sm text-red-300">
+                    <span class="w-8 h-8 bg-slate-300 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    </span>
+                    <span>log-out</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- ================= MAIN CONTENT AREA ================= -->
+        <main class="flex-1 flex flex-col min-w-0 bg-[#f7f5ee]">
+            
+            <!-- HEADER BAR (ATAS) -->
+            <header class="bg-[#e5ebed] border-b-2 border-black p-4 px-6 flex items-center justify-between shrink-0">
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-black">Halo, User</h2>
+                    <p class="text-[11px] font-bold text-gray-600 mt-1">Apa yang ingin kamu baca hari ini?</p>
+                </div>
+
+                <!-- Bagian Kanan Header (Notif + Profil) -->
+                <div class="flex items-center space-x-4">
+                    <!-- Bell Notifikasi -->
+                    <button class="relative w-10 h-10 bg-white rounded-full border-2 border-black flex items-center justify-center hover:bg-gray-100 transition shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                        <i class="fa-solid fa-bell text-black text-lg"></i>
+                        <span class="absolute top-1 right-1 w-3 h-3 bg-amber-500 rounded-full border border-black"></span>
+                    </button>
+                    <!-- Profil Info -->
+                    <div class="flex items-center space-x-3">
+                       <div class="w-10 h-10 rounded-full bg-slate-400 border-2 border-black overflow-hidden">
+                    <!-- Tambahkan id="header-avatar" di sini -->
+                            <img id="header-avatar" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=120" alt="Avatar" class="w-full h-full object-cover">
+
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=120" alt="Avatar" class="w-full h-full object-cover">
+                    </div>
+                        <div class="font-bold text-xs">
+                            <span class="block text-black text-sm">User</span>
+                            <span class="block text-gray-600">Mahasiswa</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- KONTEN AREA (SCROLLABLE) -->
+            <div class="p-6 sm:p-8 space-y-6 flex-1 overflow-y-auto relative">
+                
+                <!-- Judul Section -->
+                <div class="space-y-1">
+                    <h1 class="text-2xl sm:text-3xl font-black text-black tracking-tight uppercase">Semua e-book</h1>
+                    <p class="text-xs font-bold text-gray-600 leading-relaxed">
+                        Tingkatkan literasimu hari ini dengan membaca beberapa buku digital...
+                    </p>
+                </div>
+
+                <!-- BARIS CARI, FILTER, & URUTKAN (100% SAMA DENGAN KOLEKSI BUKU FISIK) -->
+                <div class="flex flex-col md:flex-row gap-4 items-stretch md:items-center relative z-20">
+                    
+                    <!-- Search Input Bar (Bersih Tanpa Hard Shadow) -->
+                    <div class="flex-1 flex border-2 border-black rounded-lg overflow-hidden bg-white">
+                        <input type="text" id="search-input" placeholder="cari judul e-book / penulis..." class="w-full p-2.5 px-4 text-xs font-bold text-gray-700 outline-none bg-transparent">
+                        <button id="search-btn" class="bg-[#bbbbbb] px-5 border-l-2 border-black flex items-center justify-center hover:bg-gray-400 transition-all">
+                            <i class="fa-solid fa-magnifying-glass text-black"></i>
+                        </button>
+                    </div>
+
+                    <!-- Tombol Aksi Kanan -->
+                    <div class="flex gap-3">
+                        <!-- Button Filter -->
+                        <button onclick="toggleFilter()" class="p-2.5 px-6 bg-[#ffff99] border-2 border-black rounded-lg text-xs font-extrabold text-black flex items-center space-x-2 shadow-[2px_2px_0px_rgba(0,0,0,1)] active:translate-y-[1.5px] active:shadow-[1px_1px_0px_rgba(0,0,0,1)] transition-all">
+                            <i class="fa-solid fa-filter"></i>
+                            <span>Filter</span>
+                        </button>
+
+                        <!-- Button Urutkan -->
+                        <button onclick="toggleSort()" class="p-2.5 px-6 bg-[#ffff99] border-2 border-black rounded-lg text-xs font-extrabold text-black flex items-center space-x-2 shadow-[2px_2px_0px_rgba(0,0,0,1)] active:translate-y-[1.5px] active:shadow-[1px_1px_0px_rgba(0,0,0,1)] transition-all">
+                            <i class="fa-solid fa-arrow-down-wide-short"></i>
+                            <span>Urutkan</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- DROPDOWN URUTKAN MELAYANG (100% SAMA PERSIS DENGAN KOLEKSI BUKU) -->
+                <div id="sort-dropdown" class="absolute right-6 top-36 w-60 bg-white border-2 border-black rounded-lg shadow-[4px_4px_0px_rgba(0,0,0,1)] z-30 hidden">
+                    <ul class="text-xs font-extrabold text-black divide-y-2 divide-black">
+                        <li id="sort-opt-terbaru" class="p-3 bg-[#cccccc] cursor-pointer hover:bg-gray-200" onclick="selectSort('Terbaru - Terlama')">Terbaru - Terlama</li>
+                        <li id="sort-opt-terlama" class="p-3 cursor-pointer hover:bg-gray-100" onclick="selectSort('Terlama - Terbaru')">Terlama - Terbaru</li>
+                        <li id="sort-opt-populer" class="p-3 cursor-pointer hover:bg-gray-100" onclick="selectSort('Terpopuler')">Terpopuler</li>
+                        <li id="sort-opt-az" class="p-3 cursor-pointer hover:bg-gray-100" onclick="selectSort('A - Z')">A - Z</li>
+                        <li id="sort-opt-za" class="p-3 cursor-pointer hover:bg-gray-100" onclick="selectSort('Z - A')">Z - A</li>
+                    </ul>
+                </div>
+
+                <!-- ================= FILTER POPUP CONTAINER (PERSIS FIGMA) ================= -->
+                <div id="filter-modal" class="absolute left-1/2 -translate-x-1/2 top-40 w-full max-w-xl bg-white border-2 border-black rounded-lg shadow-[6px_6px_0px_rgba(0,0,0,1)] p-6 z-30 hidden">
+                    <div class="grid grid-cols-2 gap-6 text-[11px] font-bold text-black">
+                        
+                        <!-- Kolom Kiri: Genre & Bahasa -->
+                        <div class="space-y-4">
+                            <!-- Genre -->
+                            <div class="space-y-2">
+                                <h4 class="text-xs font-extrabold border-b border-black pb-1">Genre</h4>
+                                <div class="space-y-1.5 max-h-36 overflow-y-auto pr-1">
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="genre" value="" class="accent-black" checked> <span class="text-blue-700 font-extrabold">Semua Genre</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="genre" value="Matematika" class="accent-black"> <span>Matematika</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="genre" value="Fisika" class="accent-black"> <span>Fisika</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="genre" value="Kimia" class="accent-black"> <span>Kimia</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="genre" value="Biologi" class="accent-black"> <span>Biologi</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="genre" value="Teknik Informatika" class="accent-black"> <span>Teknik Informatika</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="genre" value="Sistem Informasi" class="accent-black"> <span>Sistem Informasi</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="genre" value="Agribisnis" class="accent-black"> <span>Agribisnis</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="genre" value="Teknik Pertambangan" class="accent-black"> <span>Teknik Pertambangan</span></label>
+                                </div>
+                            </div>
+                            <!-- Bahasa -->
+                            <div class="space-y-2">
+                                <h4 class="text-xs font-extrabold border-b border-black pb-1">Bahasa</h4>
+                                <div class="space-y-1.5">
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="bahasa" value="" class="accent-black" checked> <span class="text-blue-700 font-extrabold">Semua Bahasa</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="bahasa" value="Indonesia" class="accent-black"> <span>Indonesia</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="bahasa" value="Inggris" class="accent-black"> <span>Inggris</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="bahasa" value="Lainnya" class="accent-black"> <span>Lainnya</span></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kolom Kanan: Kategori & Tahun Terbit -->
+                        <div class="space-y-4">
+                            <!-- Kategori -->
+                            <div class="space-y-2">
+                                <h4 class="text-xs font-extrabold border-b border-black pb-1">Kategori</h4>
+                                <div class="space-y-1.5 max-h-36 overflow-y-auto pr-1">
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="kategori" value="" class="accent-black" checked> <span class="text-blue-700 font-extrabold">Semua Kategori</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="kategori" value="Populer" class="accent-black"> <span>Populer</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="kategori" value="Motivasi" class="accent-black"> <span>Motivasi</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="kategori" value="Fiksi" class="accent-black"> <span>Fiksi</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="kategori" value="Penelitian" class="accent-black"> <span>Penelitian</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="kategori" value="Sejarah" class="accent-black"> <span>Sejarah</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="kategori" value="Agama" class="accent-black"> <span>Agama</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="kategori" value="Ensiklopedia" class="accent-black"> <span>Ensiklopedia</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="kategori" value="Hiburan" class="accent-black"> <span>Hiburan</span></label>
+                                </div>
+                            </div>
+                            <!-- Tahun Terbit -->
+                            <div class="space-y-2">
+                                <h4 class="text-xs font-extrabold border-b border-black pb-1">Tahun Terbit</h4>
+                                <div class="space-y-1.5">
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="tahun" value="" class="accent-black" checked> <span class="text-blue-700 font-extrabold">Semua Tahun</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="tahun" value="2020" class="accent-black"> <span>2020 - sekarang</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="tahun" value="2010" class="accent-black"> <span>2010 - 2020</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="tahun" value="2000" class="accent-black"> <span>2000 - 2010</span></label>
+                                    <label class="flex items-center space-x-2 cursor-pointer"><input type="radio" name="tahun" value="1990" class="accent-black"> <span>&lt; 2000</span></label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Tombol Aksi Terapkan -->
+                    <div class="mt-6 pt-3 border-t border-black flex justify-between items-center">
+                        <button onclick="applyFilters()" class="px-6 py-2.5 bg-[#333333] hover:bg-black text-white text-[11px] font-extrabold rounded border-2 border-black active:translate-y-[1px]">
+                            Terapkan
+                        </button>
+                        <button onclick="clearFilter()" class="text-xs underline font-extrabold hover:text-red-600">
+                            Reset Filter
+                        </button>
+                    </div>
+                </div>
+
+                <!-- HASIL KOLEKSI E-BOOK (GRID DINAMIS 5 KOLOM) -->
+                <div class="space-y-4 pt-2">
+                    <h3 id="current-sort-label" class="text-sm font-extrabold text-black">Terbaru - Terlama</h3>
+                    
+                    <div id="ebook-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 pb-12">
+                        <!-- Kartu E-Book dimuat lewat JavaScript secara dinamis di sini -->
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+    </div>
+
+    <!-- JAVASCRIPT: Logika Dynamic Rendering, Filter, Search, Sort & Insight Tracking -->
+    <script>
+        // Database E-Book Terlengkap (10 Koleksi Menarik Akademis & Populer)
+        const ebooksDatabase = [
+            { id: 11, title: "Git & GitHub Guidebook", author: "Yusuf Akbar, M.Kom.", genre: "Teknik Informatika", kategori: "Penelitian", bahasa: "Indonesia", tahun: 2023, views: 980, format: "PDF", size: "12.4 MB", fromColor: "from-amber-200", toColor: "to-red-300" },
+            { id: 12, title: "Etika Akademik IT", author: "Dr. Nurhayati", genre: "Teknik Informatika", kategori: "Penelitian", bahasa: "Indonesia", tahun: 2022, views: 340, format: "EPUB", size: "4.8 MB", fromColor: "from-sky-200", toColor: "to-emerald-300" },
+            { id: 13, title: "Kalkulus E-Edition", author: "Drs. Wahyudi", genre: "Matematika", kategori: "Populer", bahasa: "Indonesia", tahun: 2024, views: 550, format: "PDF", size: "18.1 MB", fromColor: "from-pink-200", toColor: "to-purple-300" },
+            { id: 14, title: "Siber Sec: Pengenalan", author: "Badan Siber FST", genre: "Teknik Informatika", kategori: "Penelitian", bahasa: "Indonesia", tahun: 2025, views: 1210, format: "PDF", size: "8.9 MB", fromColor: "from-slate-200", toColor: "to-indigo-300" },
+            { id: 15, title: "Fisika Dasar Elektron", author: "Prof. Sukarman", genre: "Fisika", kategori: "Populer", bahasa: "Indonesia", tahun: 2020, views: 410, format: "PDF", size: "15.3 MB", fromColor: "from-teal-200", toColor: "to-sky-300" },
+            { id: 16, title: "Sejarah Sains Islam", author: "Senat Akademik FST", genre: "Sistem Informasi", kategori: "Sejarah", bahasa: "Indonesia", tahun: 2018, views: 280, format: "EPUB", size: "3.2 MB", fromColor: "from-orange-200", toColor: "to-amber-300" },
+            { id: 17, title: "Motivasi Mahasiswa FST", author: "Siti Rahma, S.I.Pust.", genre: "Sistem Informasi", kategori: "Motivasi", bahasa: "Indonesia", tahun: 2023, views: 610, format: "EPUB", size: "2.5 MB", fromColor: "from-rose-200", toColor: "to-teal-300" },
+            { id: 18, title: "Ensiklopedia Kimia Hijau", author: "Dr. Siti Aminah", genre: "Kimia", kategori: "Ensiklopedia", bahasa: "Inggris", tahun: 2019, views: 150, format: "PDF", size: "22.6 MB", fromColor: "from-emerald-200", toColor: "to-lime-300" },
+            { id: 19, title: "Biologi Sel Modern", author: "Ir. Bambang, M.T.", genre: "Biologi", kategori: "Penelitian", bahasa: "Inggris", tahun: 2021, views: 190, format: "PDF", size: "14.1 MB", fromColor: "from-cyan-200", toColor: "to-blue-300" },
+            { id: 20, title: "Koki-Koki Punya Kerja", author: "Gramedia Digital", genre: "Agribisnis", kategori: "Hiburan", bahasa: "Lainnya", tahun: 2021, views: 890, format: "PDF", size: "9.6 MB", fromColor: "from-violet-200", toColor: "to-fuchsia-300" }
+        ];
+
+        // Status filter & sorting bawaan (State)
+        let activeSortOption = "Terbaru - Terlama";
+        let currentSearchQuery = "";
+        let filters = {
+            genre: "",
+            kategori: "",
+            bahasa: "",
+            tahun: ""
+        };
+
+        // Membuka & Menutup Pop-up Saringan Filter
+        function toggleFilter() {
+            const filterModal = document.getElementById('filter-modal');
+            const sortDropdown = document.getElementById('sort-dropdown');
+            sortDropdown.classList.add('hidden');
+            filterModal.classList.toggle('hidden');
+        }
+
+        // Membuka & Menutup Pop-up Urutan Sort
+        function toggleSort() {
+            const sortDropdown = document.getElementById('sort-dropdown');
+            const filterModal = document.getElementById('filter-modal');
+            filterModal.classList.add('hidden');
+            sortDropdown.classList.toggle('hidden');
+        }
+
+        // Aksi memilih opsi Urutkan
+        function selectSort(optionName) {
+            activeSortOption = optionName;
+            document.getElementById('current-sort-label').innerText = optionName;
+            
+            const dropdown = document.getElementById('sort-dropdown');
+            const listItems = dropdown.querySelectorAll('li');
+            listItems.forEach(item => {
+                if(item.innerText === optionName) {
+                    item.classList.add('bg-[#cccccc]');
+                } else {
+                    item.classList.remove('bg-[#cccccc]');
+                }
+            });
+
+            dropdown.classList.add('hidden');
+            renderEbooks();
+        }
+
+        // Fungsi Reset Filter
+        function clearFilter() {
+            const allGenreRadio = document.querySelector('input[name="genre"][value=""]');
+            const allBahasaRadio = document.querySelector('input[name="bahasa"][value=""]');
+            const allKategoriRadio = document.querySelector('input[name="kategori"][value=""]');
+            const allTahunRadio = document.querySelector('input[name="tahun"][value=""]');
+
+            if (allGenreRadio) allGenreRadio.checked = true;
+            if (allBahasaRadio) allBahasaRadio.checked = true;
+            if (allKategoriRadio) allKategoriRadio.checked = true;
+            if (allTahunRadio) allTahunRadio.checked = true;
+
+            filters = { genre: "", kategori: "", bahasa: "", tahun: "" };
+            renderEbooks();
+        }
+
+        // Terapkan Pilihan Filter
+        function applyFilters() {
+            filters.genre = document.querySelector('input[name="genre"]:checked')?.value || "";
+            filters.kategori = document.querySelector('input[name="kategori"]:checked')?.value || "";
+            filters.bahasa = document.querySelector('input[name="bahasa"]:checked')?.value || "";
+            filters.tahun = document.querySelector('input[name="tahun"]:checked')?.value || "";
+
+            toggleFilter(); // Tutup modal setelah filter diterapkan
+            renderEbooks();
+        }
+
+        // Jalankan Fitur Live Search saat diketik (Instant Search UX)
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            currentSearchQuery = e.target.value;
+            renderEbooks();
+        });
+
+        // ENGINE RENDER UTAMA DAFTAR E-BOOK DINAMIS
+        function renderEbooks() {
+            const grid = document.getElementById('ebook-grid');
+            
+            // 1. FILTER DATA
+            let filteredList = ebooksDatabase.filter(book => {
+                // Pencarian input teks
+                const matchSearch = book.title.toLowerCase().includes(currentSearchQuery.toLowerCase()) || 
+                                    book.author.toLowerCase().includes(currentSearchQuery.toLowerCase());
+                
+                // Filter Genre
+                const matchGenre = !filters.genre || book.genre === filters.genre;
+                
+                // Filter Kategori
+                const matchKategori = !filters.kategori || book.kategori === filters.kategori;
+                
+                // Filter Bahasa
+                const matchBahasa = !filters.bahasa || book.bahasa === filters.bahasa;
+                
+                // Filter Tahun Terbit
+                let matchTahun = true;
+                if (filters.tahun !== "") {
+                    const yearBound = parseInt(filters.tahun);
+                    if (yearBound === 2020) matchTahun = book.tahun >= 2020;
+                    else if (yearBound === 2010) matchTahun = book.tahun >= 2010 && book.tahun < 2020;
+                    else if (yearBound === 2000) matchTahun = book.tahun >= 2000 && book.tahun < 2010;
+                    else if (yearBound === 1990) matchTahun = book.tahun < 2000;
+                }
+
+                return matchSearch && matchGenre && matchKategori && matchBahasa && matchTahun;
+            });
+
+            // 2. SORTIR DATA
+            if (activeSortOption === 'Terbaru - Terlama') {
+                filteredList.sort((a, b) => b.tahun - a.tahun);
+            } else if (activeSortOption === 'Terlama - Terbaru') {
+                filteredList.sort((a, b) => a.tahun - b.tahun);
+            } else if (activeSortOption === 'A - Z') {
+                filteredList.sort((a, b) => a.title.localeCompare(b.title));
+            } else if (activeSortOption === 'Z - A') {
+                filteredList.sort((a, b) => b.title.localeCompare(a.title));
+            } else if (activeSortOption === 'Terpopuler') {
+                filteredList.sort((a, b) => b.views - a.views);
+            }
+
+            // 3. GENERATE HTML KARTU E-BOOK
+            grid.innerHTML = '';
+            if (filteredList.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-12 text-center text-gray-500 font-bold border-2 border-dashed border-black rounded-xl bg-white/40">
+                        Maaf, tidak ada e-book yang cocok dengan pencarian / saringan Anda.
+                    </div>
+                `;
+                return;
+            }
+
+            filteredList.forEach(book => {
+                grid.innerHTML += `
+                    <!-- Link langsung dialihkan ke detail_buku.html membawa data parameter dinamis -->
+                    <a href="detail_ebook.html?id=${book.id}" class="bg-white rounded-xl retro-border p-4 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all flex flex-col justify-between group">
+                        
+                        <div>
+                            <!-- Cover Visual Buku (Gradient Mewah Brutalisme) -->
+                            <div class="w-full aspect-[3/4] bg-gradient-to-br ${book.fromColor} ${book.toColor} rounded-lg retro-border flex items-center justify-center p-4 relative overflow-hidden group-hover:scale-[1.02] transition-all">
+                                <!-- Desain Mockup Bundar di Cover -->
+                                <div class="w-12 h-12 rounded-full bg-white/30 backdrop-blur-md border border-white/20 absolute -top-3 -right-3"></div>
+                                <span class="text-[10px] sm:text-xs font-black text-slate-800 text-center uppercase tracking-tighter leading-tight select-none">
+                                    ${book.title}
+                                </span>
+                            </div>
+
+                            <!-- Metadata Singkat -->
+                            <div class="mt-4 space-y-1">
+                                <h3 class="text-xs sm:text-sm font-black text-black leading-tight uppercase group-hover:underline truncate">${book.title}</h3>
+                                <p class="text-[10px] font-bold text-gray-500 truncate">Oleh: ${book.author}</p>
+                            </div>
+                        </div>
+
+                        <!-- Info Mikro-Insight (Views & Ukuran/Format) -->
+                        <div class="mt-3 pt-2.5 border-t border-dashed border-black/30 flex items-center justify-between text-[10px] font-extrabold text-black">
+                            <!-- Views -->
+                            <span class="flex items-center space-x-1.5" title="Telah dilihat ${book.views} kali">
+                                <i class="fa-solid fa-eye text-black text-xs"></i>
+                                <span>${book.views}</span>
+                            </span>
+                            <!-- Format & Size -->
+                            <span class="flex items-center space-x-1.5" title="Ukuran File: ${book.size}">
+                                <i class="fa-solid fa-file-pdf text-red-700 text-xs"></i>
+                                <span class="bg-[#ffffcc] retro-border px-1 rounded-xs">${book.format}</span>
+                            </span>
+                        </div>
+
+                    </a>
+                `;
+            });
+        }
+
+    // Tarik foto dari local storage dan terapkan ke avatar header
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedAvatar = localStorage.getItem('userAvatar');
+        const headerAvatar = document.getElementById('header-avatar');
+        if (savedAvatar && headerAvatar) {
+            headerAvatar.src = savedAvatar;
+        }
+    });
+
+        // Jalankan render awal saat halaman terbuka
+        window.onload = function() {
+            renderEbooks();
+        };
+    </script>
+</body>
+</html>

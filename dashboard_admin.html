@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - Digital Library FST</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome untuk ikon yang persis seperti Figma -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Menggunakan font Monospace agar mirip dengan visual asli di Figma */
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f7f5ee; /* Warna krem dasar aplikasi */
+        }
+        /* Style brutalism stroke hitam tebal */
+        .retro-border {
+            border: 2px solid #000000;
+        }
+        .hard-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+        }
+        .sidebar-active {
+            background-color: #555555;
+            border-top: 2px solid #000000;
+            border-bottom: 2px solid #000000;
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden">
+
+    <!-- CONTAINER UTAMA - Full Screen Tanpa Ruang Abu-Abu Gelap di Sekelilingnya -->
+    <div class="w-full min-h-screen flex flex-col md:flex-row">
+        
+        <!-- ================= SIDEBAR KIRI (STICKY DI DESKTOP) ================= -->
+        <aside class="w-full md:w-64 bg-[#3f3f3f] text-white flex flex-col justify-between border-b-2 md:border-b-0 md:border-r-2 border-black shrink-0 md:h-screen md:sticky md:top-0 z-20">
+            <div>
+                <!-- Brand & Logo Section -->
+                <div class="p-4 flex items-center space-x-3 border-b-2 border-black">
+                    <img src="Logo FST 1(1).png" alt="Logo UIN FST" class="w-12 h-12 object-contain">
+                    <div class="font-extrabold text-sm tracking-tight leading-none">
+                        <span class="block text-white text-base">Digital</span>
+                        <span class="block text-gray-300 text-base mt-1">Library</span>
+                    </div>
+                </div>
+
+                <!-- Menu Navigasi Admin -->
+                <nav class="mt-4 flex flex-col font-bold text-xs sm:text-sm">
+                    <a href="dashboard_admin.html" class="sidebar-active flex items-center space-x-3 px-6 py-4 transition-all">
+                        <span class="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-house"></i>
+                        </span>
+                        <span>Dashboard</span>
+                    </a>
+
+                
+                    <a href="kelola_buku.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-[#ff6b6b] rounded-md flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-book-open"></i>
+                        </span>
+                        <span class="text-white">Kelola Buku</span>
+                    </a>
+
+                    <a href="kelola_peminjaman.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-amber-400 rounded-md flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                        </span>
+                        <span>Kelola Peminjaman</span>
+                    </a>
+
+                    <a href="kelola_pengguna.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-users"></i>
+                        </span>
+                        <span>Kelola Pengguna</span>
+                    </a>
+
+                    <a href="laporan.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-orange-300 rounded-md flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-file-lines"></i>
+                        </span>
+                        <span>Laporan</span>
+                    </a>
+
+                    <a href="profil_admin.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-[#4d4d4d] transition-all">
+                        <span class="w-8 h-8 bg-amber-300 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                            <i class="fa-solid fa-user-gear"></i>
+                        </span>
+                        <span>Profil</span>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Log out -->
+            <div class="border-t-2 border-black bg-[#333333]">
+                <a href="login.html" class="flex items-center space-x-3 px-6 py-4 hover:bg-red-900/40 transition-all font-bold text-sm text-red-300">
+                    <span class="w-8 h-8 bg-slate-300 rounded-full flex items-center justify-center border-2 border-black text-black text-xs">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    </span>
+                    <span>log-out</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- ================= MAIN CONTENT AREA ================= -->
+        <main class="flex-1 flex flex-col min-w-0 bg-[#f7f5ee]">
+            
+            <!-- HEADER BAR (ATAS) -->
+            <header class="bg-[#e5ebed] border-b-2 border-black p-4 px-6 flex items-center justify-between shrink-0">
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-black">Halo, Admin</h2>
+                    <p class="text-[11px] font-bold text-gray-600 mt-1">Apakah hari ini berjalan lancar?</p>
+                </div>
+
+                <!-- Bagian Kanan Header (Notif + Profil Ringkas Persis Figma) -->
+                <div class="flex items-center space-x-4">
+                    <!-- Bell Notifikasi -->
+                    <button class="relative w-10 h-10 bg-white rounded-full border-2 border-black flex items-center justify-center hover:bg-gray-100 transition shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                        <i class="fa-solid fa-bell text-black text-lg"></i>
+                        <span class="absolute top-1 right-1 w-3 h-3 bg-amber-500 rounded-full border border-black"></span>
+                    </button>
+                    <!-- Profil Info (User Admin Sesuai Gambar Figma) -->
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-slate-400 border-2 border-black overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=120" alt="Avatar" class="w-full h-full object-cover">
+                        </div>
+                        <div class="font-bold text-xs">
+                            <span class="block text-black text-sm">Username</span>
+                            <span class="block text-gray-600">Admin</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- KONTEN UTAMA DENGAN OPSI SCROLL VERTIKAL YANG MULUS -->
+            <div class="p-6 space-y-8 overflow-y-auto flex-1">
+                
+                <!-- BAGIAN 1: STATISTIK METRIKS -->
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-extrabold text-black tracking-tight">Statistik</h3>
+                        <a href="#" class="text-xs font-bold text-black hover:underline flex items-center space-x-1">
+                            <span>Selengkapnya</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- 4 Grid Statistik Sesuai Figma -->
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                        <!-- Total Buku (Warna Hijau Pastel) -->
+                        <div class="bg-[#d2e7d6] retro-border rounded-xl p-4 text-center hard-shadow">
+                            <h4 class="text-xs font-extrabold text-black uppercase">Total Buku</h4>
+                            <p class="text-3xl sm:text-4xl font-black text-black mt-2">1.250</p>
+                        </div>
+                        <!-- Total Pengguna (Warna Mint/Cyan Pastel) -->
+                        <div class="bg-[#c2f0d5] retro-border rounded-xl p-4 text-center hard-shadow">
+                            <h4 class="text-xs font-extrabold text-black uppercase">Total Pengguna</h4>
+                            <p class="text-3xl sm:text-4xl font-black text-black mt-2">325</p>
+                        </div>
+                        <!-- Buku Dipinjam (Warna Biru Pastel) -->
+                        <div class="bg-[#d2e2ec] retro-border rounded-xl p-4 text-center hard-shadow">
+                            <h4 class="text-xs font-extrabold text-black uppercase">Buku Dipinjam</h4>
+                            <p class="text-3xl sm:text-4xl font-black text-black mt-2">23</p>
+                        </div>
+                        <!-- Permohonan Pending (Warna Ungu Pastel) -->
+                        <div class="bg-[#c9cef2] retro-border rounded-xl p-4 text-center hard-shadow">
+                            <h4 class="text-xs font-extrabold text-black uppercase">Permohon Pending</h4>
+                            <p class="text-3xl sm:text-4xl font-black text-black mt-2">7</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BAGIAN 2: GRAFIK & AKTIVITAS TERBARU (SPLIT SECTION) -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Sisi Kiri: Grafik Peminjaman (Lebar 2/3 di layar besar) -->
+                    <div class="lg:col-span-2 space-y-4">
+                        <h3 class="text-base sm:text-lg font-extrabold text-black">Grafik Peminjaman <span class="text-xs font-bold text-gray-600">(6 bulan terakhir)</span></h3>
+                        
+                        <!-- Box Grafik Custom dengan visual yang persis di Figma -->
+                        <div class="bg-white retro-border rounded-xl p-6 hard-shadow flex flex-col justify-between min-h-[320px]">
+                            <div class="text-[10px] font-bold text-gray-500 mb-2">GRAFIK PEMINJAMAN BULANAN</div>
+                            
+                            <!-- Batang Grafik (Flexbox HTML & CSS murni) -->
+                            <div class="flex items-end justify-between h-48 border-b-2 border-black px-4 pt-4">
+                                <!-- Batang 1 (Jan) -->
+                                <div class="flex flex-col items-center w-12">
+                                    <div class="bg-[#789e7c] w-8 h-32 retro-border rounded-t-md transition-all hover:bg-[#5b835f]" title="65 Buku"></div>
+                                    <span class="text-[10px] font-bold text-black mt-2">01 Jan</span>
+                                </div>
+                                <!-- Batang 2 (Feb) -->
+                                <div class="flex flex-col items-center w-12">
+                                    <div class="bg-[#789e7c] w-8 h-24 retro-border rounded-t-md transition-all hover:bg-[#5b835f]" title="50 Buku"></div>
+                                    <span class="text-[10px] font-bold text-black mt-2">08 Jan</span>
+                                </div>
+                                <!-- Batang 3 (Mar) -->
+                                <div class="flex flex-col items-center w-12">
+                                    <div class="bg-[#789e7c] w-8 h-20 retro-border rounded-t-md transition-all hover:bg-[#5b835f]" title="45 Buku"></div>
+                                    <span class="text-[10px] font-bold text-black mt-2">15 Jan</span>
+                                </div>
+                                <!-- Batang 4 (Apr) -->
+                                <div class="flex flex-col items-center w-12">
+                                    <div class="bg-[#789e7c] w-8 h-36 retro-border rounded-t-md transition-all hover:bg-[#5b835f]" title="75 Buku"></div>
+                                    <span class="text-[10px] font-bold text-black mt-2">22 Jan</span>
+                                </div>
+                                <!-- Batang 5 (Mei) -->
+                                <div class="flex flex-col items-center w-12">
+                                    <div class="bg-[#789e7c] w-8 h-28 retro-border rounded-t-md transition-all hover:bg-[#5b835f]" title="55 Buku"></div>
+                                    <span class="text-[10px] font-bold text-black mt-2">29 Jan</span>
+                                </div>
+                            </div>
+                            <div class="text-[11px] font-bold text-gray-500 text-center mt-2">Diagram batang memperlihatkan lonjakan peminjaman di pekan ke-4.</div>
+                        </div>
+                    </div>
+
+                    <!-- Sisi Kanan: Aktivitas Terbaru (Lebar 1/3) -->
+                    <div class="space-y-4">
+                        <h3 class="text-base sm:text-lg font-extrabold text-black">Aktivitas Terbaru</h3>
+                        
+                        <!-- Box Daftar Aktivitas Sesuai Figma -->
+                        <div class="bg-[#fffdf3] retro-border rounded-xl p-5 hard-shadow space-y-4 min-h-[320px]">
+                            <!-- Item 1 -->
+                            <div class="border-b border-black pb-2">
+                                <p class="text-xs font-bold text-black">User 1 meminjam buku "Basis Data"</p>
+                                <span class="text-[10px] font-bold text-gray-500">10 menit yang lalu</span>
+                            </div>
+                            <!-- Item 2 -->
+                            <div class="border-b border-black pb-2">
+                                <p class="text-xs font-bold text-black">User 2 meminjam buku "Pemrograman"</p>
+                                <span class="text-[10px] font-bold text-gray-500">20 menit yang lalu</span>
+                            </div>
+                            <!-- Item 3 -->
+                            <div class="border-b border-black pb-2">
+                                <p class="text-xs font-bold text-black">User 3 meminjam buku "Bisnis"</p>
+                                <span class="text-[10px] font-bold text-gray-500">23 menit yang lalu</span>
+                            </div>
+                            <!-- Item 4 -->
+                            <div>
+                                <p class="text-xs font-bold text-black">User 123 meminjam buku "Data"</p>
+                                <span class="text-[10px] font-bold text-gray-500">30 menit yang lalu</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ================== TAMBAHAN EDIT / SCROLL-DOWN BAGIAN BAWAH ================== -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 pt-4 pb-12">
+                    
+                    <!-- Tambahan 1: Antrean Pending Verifikasi (Pending Requests Table) -->
+                    <div class="lg:col-span-2 space-y-4">
+                        <h3 class="text-base sm:text-lg font-extrabold text-black">Daftar Persetujuan Pending <span class="text-xs font-bold text-red-600">(Perlu Tindakan)</span></h3>
+                        <div class="bg-white retro-border rounded-xl overflow-hidden hard-shadow">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-[#e5ebed] border-b-2 border-black text-xs font-extrabold text-black">
+                                        <th class="p-3 border-r border-black">Pemohon / NIM</th>
+                                        <th class="p-3 border-r border-black">Buku / Kategori</th>
+                                        <th class="p-3 text-center">Tindakan</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-xs font-bold text-gray-800 divide-y-2 divide-black">
+                                    <!-- Row 1 -->
+                                    <tr class="hover:bg-slate-50 transition-all">
+                                        <td class="p-3 border-r border-black">
+                                            <span class="block text-black">Farhan (220401012)</span>
+                                            <span class="text-[10px] text-gray-500">Informatika</span>
+                                        </td>
+                                        <td class="p-3 border-r border-black">
+                                            <span class="block text-black">Sistem Basis Data</span>
+                                            <span class="text-[10px] text-gray-500">Fisik (Rak B-3)</span>
+                                        </td>
+                                        <td class="p-3 text-center space-x-2">
+                                            <button onclick="approveRequest('Farhan', 'Sistem Basis Data')" class="p-1 px-3 bg-[#d2e7d6] border border-black rounded font-extrabold text-[10px] shadow-[1px_1px_0px_rgba(0,0,0,1)] active:translate-y-[1px]">Setujui</button>
+                                            <button onclick="rejectRequest('Farhan')" class="p-1 px-3 bg-[#f2c9c9] border border-black rounded font-extrabold text-[10px] shadow-[1px_1px_0px_rgba(0,0,0,1)] active:translate-y-[1px]">Tolak</button>
+                                        </td>
+                                    </tr>
+                                    <!-- Row 2 -->
+                                    <tr class="hover:bg-slate-50 transition-all">
+                                        <td class="p-3 border-r border-black">
+                                            <span class="block text-black">Nabila (220401053)</span>
+                                            <span class="text-[10px] text-gray-500">Informatika</span>
+                                        </td>
+                                        <td class="p-3 border-r border-black">
+                                            <span class="block text-black">Etika Akademik IT</span>
+                                            <span class="text-[10px] text-gray-500">Fisik (Rak A-1)</span>
+                                        </td>
+                                        <td class="p-3 text-center space-x-2">
+                                            <button onclick="approveRequest('Nabila', 'Etika Akademik IT')" class="p-1 px-3 bg-[#d2e7d6] border border-black rounded font-extrabold text-[10px] shadow-[1px_1px_0px_rgba(0,0,0,1)] active:translate-y-[1px]">Setujui</button>
+                                            <button onclick="rejectRequest('Nabila')" class="p-1 px-3 bg-[#f2c9c9] border border-black rounded font-extrabold text-[10px] shadow-[1px_1px_0px_rgba(0,0,0,1)] active:translate-y-[1px]">Tolak</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Tambahan 2: Pintasan Tindakan Cepat (Quick Actions) -->
+                    <div class="space-y-4">
+                        <h3 class="text-base sm:text-lg font-extrabold text-black">Aksi Cepat</h3>
+                        <div class="bg-[#fffdf3] retro-border rounded-xl p-5 hard-shadow space-y-3">
+                            <button class="w-full p-3 bg-[#d2e7d6] text-black border-2 border-black rounded-lg font-bold text-xs hard-shadow hover:translate-y-[1px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-plus-circle"></i>
+                                <span>Input Buku Baru</span>
+                            </button>
+                            <button class="w-full p-3 bg-[#d2e2ec] text-black border-2 border-black rounded-lg font-bold text-xs hard-shadow hover:translate-y-[1px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-print"></i>
+                                <span>Cetak Bebas Pustaka</span>
+                            </button>
+                            <button class="w-full p-3 bg-[#c9cef2] text-black border-2 border-black rounded-lg font-bold text-xs hard-shadow hover:translate-y-[1px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-file-export"></i>
+                                <span>Unduh Laporan Bulanan</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+
+    </div>
+
+    <!-- JAVASCRIPT: Logika Interaksi Fungsional Toast Notifikasi -->
+    <script>
+        function approveRequest(user, book) {
+            // Memberikan respon visual cepat (Usability Feedback) tanpa alert() bising
+            const confirmBox = document.createElement('div');
+            confirmBox.className = "fixed bottom-5 right-5 bg-[#d2e7d6] border-2 border-black p-4 rounded-xl hard-shadow text-xs font-bold text-black z-50 flex items-center space-x-3";
+            confirmBox.innerHTML = `
+                <i class="fa-solid fa-circle-check text-green-700 text-lg"></i>
+                <span>Peminjaman "${book}" oleh ${user} sukses disetujui!</span>
+            `;
+            document.body.appendChild(confirmBox);
+            setTimeout(() => confirmBox.remove(), 3000);
+        }
+
+        function rejectRequest(user) {
+            const confirmBox = document.createElement('div');
+            confirmBox.className = "fixed bottom-5 right-5 bg-[#f2c9c9] border-2 border-black p-4 rounded-xl hard-shadow text-xs font-bold text-black z-50 flex items-center space-x-3";
+            confirmBox.innerHTML = `
+                <i class="fa-solid fa-circle-xmark text-red-700 text-lg"></i>
+                <span>Permohonan oleh ${user} telah ditolak.</span>
+            `;
+            document.body.appendChild(confirmBox);
+            setTimeout(() => confirmBox.remove(), 3000);
+        }
+    </script>
+</body>
+</html>
